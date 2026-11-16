@@ -98,7 +98,19 @@ PHONES = [
     build(["London office ", ("PHONE", "+44 20 7946 0958")]),
     build(["reach me on ", ("PHONE", "+49 30 23125 042")]),
     build([("PHONE", "+1-202-555-0188"), " is the hotline."]),
+    # E.164 compact, or with one separator after the country code (fiction
+    # ranges above, written without their usual grouping).
+    build(["Call ", ("PHONE", "+33199001234"), " after noon."]),
+    build(["UK desk ", ("PHONE", "+442079460958"), "."]),
+    build(["Berlin: ", ("PHONE", "+493023125042")]),
+    build(["US line ", ("PHONE", "+1 2025550188"), " (fiction range)"]),
+    build(["fr ", ("PHONE", "+33 536495678"), " ok"]),
     # hard negatives
+    # A compact national number has no "+" to anchor it: this 10-digit id is the
+    # shape about 9% of random 10-digit ids share, so it stays out.
+    neg("Order 0123456789 shipped today."),
+    neg("Views +1234567 this week."),  # 7 digits: below E.164
+    neg("Delta +1234567890123456 bytes."),  # 16 digits: above E.164
     neg("See RFC 2616 section 4.2 for details."),
     neg("The build finished at 2026-06-29 in CI."),
     neg("Only 42 seats remain in room 204."),

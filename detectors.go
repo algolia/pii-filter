@@ -51,6 +51,9 @@ var (
 	// Candidate phone: optional +CC, optional (area), then digit groups joined by
 	// a single separator. Validated by digit count + boundary checks.
 	phoneRe = regexp.MustCompile(`(?:\+\d{1,3}[ .\-]?)?(?:\(\d{1,4}\)[ .\-]?)?\d{1,8}(?:[ .\-]\d{1,8}){1,6}`)
+	// E.164 written compact or with one separator after the country code: the
+	// spec's first PHONE alternative, boundaries checked in phoneDetector.
+	phoneE164Re = regexp.MustCompile(`\+[1-9][0-9]{0,2}[ .\-]?[0-9]{6,14}`)
 	// Card: a whole digit run of 13+ digits, single spaces/hyphens between
 	// digits. creditCardDetector reports the run or its valid windows of whole
 	// groups (Python card_spans). Validated by Luhn + IIN + length.
@@ -277,6 +280,30 @@ func (phoneDetector) Entity() Entity { return EntityPhone }
 
 func (phoneDetector) Find(text string) []Finding {
 	var out []Finding
+
+	// The E.164 alternative: whenever it matches, the grouped pattern could only
+	// match the same span, so a separate scan finds what Python's alternation
+	// finds (overlap resolution drops the duplicate).
+	for _, loc := range phoneE164Re.FindAllStringIndex(text, -1) {
+		start, end := loc[0], loc[1]
+		if start > 0 && isASCIIDigit(text[start-1]) {
+			continue
+		}
+
+		if end < len(text) && isASCIIDigit(text[end]) {
+			continue
+		}
+
+		if end+1 < len(text) && isIDSep(text[end]) && isASCIIDigit(text[end+1]) {
+			continue // another digit group follows: the grouped reading owns it
+		}
+
+		if n := countDigits(text[start:end]); n < 9 || n > 15 {
+			continue
+		}
+
+		out = append(out, Finding{Entity: EntityPhone, Start: start, End: end, Score: 0.85, Tier: Tier1, Text: text[start:end]})
+	}
 
 	for _, loc := range phoneRe.FindAllStringIndex(text, -1) {
 		start, end := loc[0], loc[1]
