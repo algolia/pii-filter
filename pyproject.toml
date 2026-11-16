@@ -1,6 +1,6 @@
 [project]
 name = "algolia-pii"
-version = "0.2.0"
+version = "0.2.1"
 description = "Algolia PII detection and policy: shared spec, golden corpus, and a calibrated evaluation harness."
 license = "MIT"
 license-files = ["LICENSE"]

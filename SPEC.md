@@ -76,6 +76,13 @@ as 0/1/2). SIREN and SIRET are Tier 1.5 (below). When two detectors claim the
 same span, the higher score wins, then the earlier entity in `spec/entities.yaml`;
 the national identifiers are listed before PHONE and CREDIT_CARD for that reason.
 
+For CREDIT_CARD and IBAN a regex match is a candidate run, not the span. A card
+is the longest Luhn/IIN-valid 13-19-digit window starting at a digit group (a
+window shorter than the run must be card-shaped). A grouped IBAN that fails as a
+whole is cut back to its country's length. Scanning resumes after the reported
+span, and both languages apply the same rule (`card_spans`/`iban_spans` in
+`src/pii/validators.py`, `cardWindows`/`ibanSpan` in `detectors.go`).
+
 SSNs are deliberately **not** in this set. A US SSN has no checksum (the SSA
 randomized assignment in 2011), so a bare regex is high-false-positive and would
 undermine the calibrated-precision story this tier rests on. It belongs to a

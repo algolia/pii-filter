@@ -88,6 +88,13 @@ func (d boundedDetector) Find(text string) []Finding {
 			// next offset. Patterns start on an ASCII byte, so +1 is a rune step.
 			pos = start + 1
 
+			// Every bound refuses a start glued to a letter or digit, so skip
+			// those offsets: a long digit run would otherwise cost one regex
+			// search per byte.
+			for pos < len(text) && isASCIIAlnum(text[pos-1]) {
+				pos++
+			}
+
 			continue
 		}
 

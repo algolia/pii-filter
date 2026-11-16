@@ -13,5 +13,20 @@
 {"text": "Sudan SD2129010501234001", "entities": [{"type": "IBAN", "start": 6, "end": 24, "value": "SD2129010501234001"}]}
 {"text": "Somalia SO211000001001000100141", "entities": [{"type": "IBAN", "start": 8, "end": 31, "value": "SO211000001001000100141"}]}
 {"text": "Yemen YE15CBYE0001018861234567891234 account", "entities": [{"type": "IBAN", "start": 6, "end": 36, "value": "YE15CBYE0001018861234567891234"}]}
+{"text": "Bank details: DE89 3704 0044 0532 0130 00.", "entities": [{"type": "IBAN", "start": 14, "end": 41, "value": "DE89 3704 0044 0532 0130 00"}]}
+{"text": "IBAN GB82 WEST 1234 5698 7654 32 (sort code on file)", "entities": [{"type": "IBAN", "start": 5, "end": 32, "value": "GB82 WEST 1234 5698 7654 32"}]}
+{"text": "RIB : FR14 2004 1010 0505 0001 3M02 606 merci.", "entities": [{"type": "IBAN", "start": 6, "end": 39, "value": "FR14 2004 1010 0505 0001 3M02 606"}]}
+{"text": "NL NL91 ABNA 0417 1643 00 ok", "entities": [{"type": "IBAN", "start": 3, "end": 25, "value": "NL91 ABNA 0417 1643 00"}]}
+{"text": "iban: NL91.ABNA.0417.1643.00", "entities": [{"type": "IBAN", "start": 6, "end": 28, "value": "NL91.ABNA.0417.1643.00"}]}
+{"text": "Wire to DE89-3704-0044-0532-0130-00 today.", "entities": [{"type": "IBAN", "start": 8, "end": 35, "value": "DE89-3704-0044-0532-0130-00"}]}
+{"text": "lowercase gb82west12345698765432 pasted from a form", "entities": [{"type": "IBAN", "start": 10, "end": 32, "value": "gb82west12345698765432"}]}
+{"text": "iban de89 3704 0044 0532 0130 00 in lowercase", "entities": [{"type": "IBAN", "start": 5, "end": 32, "value": "de89 3704 0044 0532 0130 00"}]}
+{"text": "Pay BE68 5390 0754 7034 from the shared account.", "entities": [{"type": "IBAN", "start": 4, "end": 23, "value": "BE68 5390 0754 7034"}]}
+{"text": "Old BE68 5390 0754 7034 new NL91 ABNA 0417 1643 00.", "entities": [{"type": "IBAN", "start": 4, "end": 23, "value": "BE68 5390 0754 7034"}, {"type": "IBAN", "start": 28, "end": 50, "value": "NL91 ABNA 0417 1643 00"}]}
+{"text": "Accounts BE68 5390 0754 7034 NL91 ABNA 0417 1643 00.", "entities": [{"type": "IBAN", "start": 9, "end": 28, "value": "BE68 5390 0754 7034"}, {"type": "IBAN", "start": 29, "end": 51, "value": "NL91 ABNA 0417 1643 00"}]}
 {"text": "Code DE00000000000000000000 is a placeholder.", "entities": []}
 {"text": "Token GB00WEST12345698765432 is fake.", "entities": []}
+{"text": "Printed DE00 3704 0044 0532 0130 00 has a bad check.", "entities": []}
+{"text": "Mixed DE89 3704-0044 0532 0130 00 separators.", "entities": []}
+{"text": "Token De89370400440532013000 in the log.", "entities": []}
+{"text": "Lowercase qq51abcd0123456789012 is not tabled.", "entities": []}

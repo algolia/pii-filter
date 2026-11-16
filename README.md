@@ -1,6 +1,6 @@
 # algolia/pii-filter
 
-![Tier-1 at a glance: validators lift precision 0.36 → 1.00 at unchanged recall on 323 corpus examples, 328 false positives removed to 0, every entity at precision 1.00, plus a live redaction demo.](docs/hero.png)
+![Tier-1 at a glance: validators lift precision 0.34 → 1.00 and recall 0.95 → 1.00 on 355 corpus examples, 380 false positives removed to 0, every entity at precision 1.00, plus a live redaction demo.](docs/hero.png)
 
 <sub>Regenerate: `PYTHONPATH=src python -m pii.bench.cli hero`</sub>
 
@@ -59,9 +59,17 @@ Read this before depending on anything below.
   uppercase; the NIR month and department are not checked against the INSEE
   tables (so the corpus uses unissued months 14-19); overseas 3+2 place grouping
   has no special handling.
-- **Same corpus is not full parity.** Python and Go agree on every corpus row,
-  but they have known, pre-existing disagreements on CREDIT_CARD, PHONE and IP
-  edge cases outside it (about 124 per 20,000 fuzz strings, measured before 0.2.0).
+- **Compact national phone numbers are not detected.** `0` plus 9-10 digits with
+  no separator and no `+` (`0199001234`) is left alone: about 9% of random 10- and
+  11-digit ids (order numbers, tracking codes) share that shape. Compact E.164
+  (`+33199001234`) and grouped national numbers are detected.
+- **Same corpus is not full parity.** Python and Go agree on every corpus row.
+  Outside it, cards and IBANs agree on all of three 20,000-string fuzz runs;
+  PHONE still disagrees on about 20 per 20,000 random strings, 837 per 20,000
+  IBAN- and card-shaped ones and 1,463 per 20,000 built around `+` signs (all
+  pre-existing, none added by the E.164 form). Go does not retry a phone match refused for
+  touching a digit, and Python's `\d` in the grouped phone pattern is Unicode
+  where Go's is ASCII.
 - **Tier-2 (PERSON, ADDRESS) is an interface with a no-op backend today.** NER
   is a best-effort guess wherever it lands; honest out-of-domain F1 for open
   models clusters near 0.5 ([`docs/research-sota-2026-07.md`](docs/research-sota-2026-07.md)).
@@ -69,8 +77,9 @@ Read this before depending on anything below.
   and documented incomplete, never an inference model (the CJEU treats inferred
   Art. 9 data as Art. 9 data, so inference creates the liability it detects).
 - **Corpus numbers are corpus numbers.** Precision 1.00 is a point estimate on
-  323 curated examples, 182 labeled spans (overall CI floor 0.98, per new
-  national-ID entity 0.80-0.87 on 15-25 spans each); field accuracy is
+  355 curated examples, 207 labeled spans (overall CI floor 0.98, per
+  national-ID entity 0.80-0.87 on 15-25 spans each, CREDIT_CARD 0.80 on 15,
+  PHONE 0.83 on 19, IBAN 0.89 on 30); field accuracy is
   unmeasured. The national-ID rows are synthetic, built
   by a seeded generator (`corpus/synth_ids.py`), not sampled from real text,
   and drawn from ranges meant to be unissued (its header says how strong each
@@ -205,9 +214,9 @@ corpus/*.jsonl      (golden, span-labeled  <- the cross-language contract)
   | Entity | What | Validation | Default policy |
   |---|---|---|---|
   | EMAIL | email address | regex | redact |
-  | PHONE | phone number | digit count, not an IP or date | redact |
-  | CREDIT_CARD | payment card | Luhn + IIN + length | reject |
-  | IBAN | bank account | per-country length + mod-97 | reject |
+  | PHONE | phone number, grouped or compact E.164 (`+` and 9-15 digits) | digit count, not an IP or date | redact |
+  | CREDIT_CARD | payment card, also inside a longer digit run (card then expiry or CVV) | Luhn + IIN + length, card-shaped groups | reject |
+  | IBAN | bank account, compact or in 4-character groups (space, NBSP, thin space, dot, dash), any case | per-country length + mod-97 | reject |
   | IP | IPv4 address | octet range | flag |
   | FR_NIR | French social security number (15 chars) | mod-97 key, Corsica 2A/2B; ~1% of random 15-digit runs starting 1/2/7/8 pass | redact |
   | FR_TAX_ID | French numero fiscal / SPI (13 digits) | first digit 0-3, mod 511; ~0.09% of ms timestamps and EAN-13 pass | redact |
@@ -226,19 +235,21 @@ corpus/*.jsonl      (golden, span-labeled  <- the cross-language contract)
 
 ## The validators earn their keep (calibrated evidence)
 
-Span-level scores over the 323-example corpus (182 labeled spans), regex-only
+Span-level scores over the 355-example corpus (207 labeled spans), regex-only
 baseline vs validated Tier-1 (95% Wilson intervals, because n is small and
 honesty is the point):
 
 | Detector | Precision | Recall | False positives |
 |---|---|---|---|
-| regex-only baseline | 0.36 [0.32-0.40] | 1.00 [0.98-1.00] | 328 |
+| regex-only baseline | 0.34 [0.30-0.38] | 0.95 [0.91-0.97] | 380 |
 | **Tier-1 (validated)** | **1.00 [0.98-1.00]** | **1.00 [0.98-1.00]** | **0** |
 
 The baseline over-matches (Luhn/IIN-invalid cards, out-of-range IPs, invalid
 IBANs, date-like phone numbers, checksum-invalid and keyword-less national
 IDs); the validators and the keyword gate remove every false positive without
-costing recall. The baseline's false-positive count reflects how many near
+costing recall. The baseline also misses spans a bare regex match cannot give: a
+card followed by its expiry (one 20-digit run whose valid card is a sub-window)
+and a grouped IBAN cut back to its country length. The baseline's false-positive count reflects how many near
 misses the corpus holds (most of the 0.2.0 rows are deliberate near misses), so
 compare it across detectors, not across corpus versions. Charts: [`docs/bench-tier1.png`](docs/bench-tier1.png)
 vs [`docs/bench-baseline.png`](docs/bench-baseline.png). Reproduce:

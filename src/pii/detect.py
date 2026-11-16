@@ -15,7 +15,7 @@ from typing import Protocol, runtime_checkable
 from .context import fold, has_keyword_before
 from .spec import load_entities
 from .types import EntitySpec, Finding
-from .validators import VALIDATORS
+from .validators import SPANNERS, VALIDATORS
 
 
 @runtime_checkable
@@ -113,25 +113,37 @@ class Tier1Detector:
     def detect(self, text: str) -> list[Finding]:
         raw: list[Finding] = []
         for entity, pattern, validator, gate in self._compiled:
-            check = VALIDATORS.get(validator) if validator else None
-            for match in pattern.finditer(text):
-                value = match.group()
-                if check is not None and not check(value):
+            # Phone has no checksum, so it carries lower confidence than the
+            # checksum-validated entities.
+            score = 0.85 if validator == "phone_digits" else 1.0
+            for start, end in self._spans(text, pattern, validator):
+                if gate is not None and not has_keyword_before(text, start, *gate):
                     continue
-                if gate is not None and not has_keyword_before(text, match.start(), *gate):
-                    continue
-                # Phone has no checksum, so it carries lower confidence than the
-                # checksum-validated entities.
-                score = 0.85 if validator == "phone_digits" else 1.0
                 raw.append(
                     Finding(
                         entity=entity,
-                        start=match.start(),
-                        end=match.end(),
-                        value=value,
+                        start=start,
+                        end=end,
+                        value=text[start:end],
                         score=score,
                         tier=1,
                         detector=self.name,
                     )
                 )
         return resolve_overlaps(raw)
+
+    @staticmethod
+    def _spans(text: str, pattern: re.Pattern[str], validator: str | None) -> list[tuple[int, int]]:
+        """Validated spans for one entity. A spanner (validators.SPANNERS) may
+        report a sub-span of a match and choose where the scan resumes."""
+        spanner = SPANNERS.get(validator) if validator else None
+        if spanner is None:
+            check = VALIDATORS.get(validator) if validator else None
+            return [m.span() for m in pattern.finditer(text) if check is None or check(m.group())]
+        spans: list[tuple[int, int]] = []
+        pos = 0
+        while (match := pattern.search(text, pos)) is not None:
+            found, resume = spanner(text, match.start(), match.end())
+            spans.extend(found)
+            pos = max(resume, match.start() + 1)
+        return spans

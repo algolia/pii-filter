@@ -72,7 +72,61 @@ def valid_credit_card(match: str) -> bool:
     d = _digits(match)
     if not (13 <= len(d) <= 19):
         return False
-    return luhn(d) and _valid_card_network(d)
+    return _valid_card_network(d) and luhn(d)
+
+
+def _card_shape(sizes: list[int]) -> bool:
+    """Group sizes of a printed card: one compact group, 4-digit groups with a
+    shorter last one (4-4-4-4, 4-4-4-4-3), or Amex/Diners 4-6-5 and 4-6-4."""
+    if len(sizes) == 1 or sizes in ([4, 6, 5], [4, 6, 4]):
+        return True
+    return all(n == 4 for n in sizes[:-1]) and 1 <= sizes[-1] <= 4
+
+
+def card_spans(text: str, start: int, end: int) -> tuple[list[tuple[int, int]], int]:
+    """Card spans inside the digit run text[start:end] (spec CREDIT_CARD regex).
+
+    The run as a whole when it validates (any grouping, as before); otherwise
+    windows of whole digit groups holding 13-19 digits and printed like a card
+    (_card_shape), so a trailing expiry or CVV, or a leading short reference, no
+    longer hides the card. From each group the longest valid window wins, and the
+    scan moves past it. A compact run of 20+ digits (a long id) has no window, and
+    the shape rule keeps runs of small numbers from yielding one."""
+    groups: list[tuple[int, int]] = []
+    i = start
+    while i < end:
+        j = i
+        while j < end and "0" <= text[j] <= "9":
+            j += 1
+        groups.append((i, j))
+        i = j + 1  # skip the single separator
+    sizes = [b - a for a, b in groups]
+    spans: list[tuple[int, int]] = []
+    g = 0
+    while g < len(groups):
+        best = -1
+        digits = ""
+        if text[groups[g][0]] not in "23456":  # no issuer prefix starts otherwise
+            g += 1
+            continue
+        for k in range(g, len(groups)):
+            digits += text[groups[k][0] : groups[k][1]]
+            if len(digits) > 19:
+                break
+            whole = g == 0 and k == len(groups) - 1
+            if (
+                len(digits) >= 13
+                and _valid_card_network(digits)
+                and (whole or _card_shape(sizes[g : k + 1]))
+                and luhn(digits)
+            ):
+                best = k
+        if best < 0:
+            g += 1
+            continue
+        spans.append((groups[g][0], groups[best][1]))
+        g = best + 1
+    return spans, end
 
 
 # Official IBAN length per country (ISO 13616 / SWIFT IBAN Registry). An IBAN's
@@ -104,14 +158,30 @@ def _load_iban_lengths() -> dict[str, int]:
 IBAN_LENGTHS: dict[str, int] = _load_iban_lengths()
 
 
+#: Separators allowed between the printed 4-character IBAN groups: space, no-break
+#: space, thin space, narrow no-break space, dot, hyphen (spec IBAN regex).
+IBAN_SEPARATORS = "\u0020\u00a0\u2009\u202f.-"
+
+
 def iban_mod97(match: str) -> bool:
     """IBAN validation: per-country length (ISO 13616) + mod-97 checksum
     (ISO 7064 MOD 97-10). Length is checked against the country code first, so a
-    wrong-length string is rejected before the (more expensive) checksum."""
-    s = match.replace(" ", "").upper()
+    wrong-length string is rejected before the (more expensive) checksum.
+
+    Grouped or lowercase input is a looser shape, so it must use one separator
+    kind, must not mix cases, and needs a country in the length table."""
+    seps = {ch for ch in match if ch in IBAN_SEPARATORS}
+    if len(seps) > 1:
+        return False
+    raw = "".join(ch for ch in match if ch not in IBAN_SEPARATORS)
+    if raw != raw.upper() and raw != raw.lower():
+        return False  # mixed case reads as a token (base62 id, key), not an IBAN
+    s = raw.upper()
     if not (15 <= len(s) <= 34):
         return False
     expected = IBAN_LENGTHS.get(s[:2])
+    if expected is None and (seps or raw != s):
+        return False
     if expected is not None and len(s) != expected:
         return False
     rearranged = s[4:] + s[:4]  # move the first four chars to the end
@@ -125,6 +195,32 @@ def iban_mod97(match: str) -> bool:
             return False
         remainder = (remainder * 100 + n) % 97 if n > 9 else (remainder * 10 + n) % 97
     return remainder == 1
+
+
+def iban_spans(text: str, start: int, end: int) -> tuple[list[tuple[int, int]], int]:
+    """Spans of the IBAN regex match text[start:end], and where to resume scanning.
+
+    A grouped match may have swallowed trailing 4-character groups that are not
+    part of the IBAN (a word, or a second IBAN after a 16-character one). When the
+    whole match fails, cut it at the country's IBAN length, but only where a
+    separator follows, so the cut drops whole groups. Scanning resumes at the cut,
+    so an IBAN that follows is still found."""
+    value = text[start:end]
+    if iban_mod97(value):
+        return [(start, end)], end
+    expected = IBAN_LENGTHS.get(value[:2].upper())
+    if expected is None or not any(ch in IBAN_SEPARATORS for ch in value):
+        return [], end
+    seen = 0
+    for i, ch in enumerate(value):
+        if ch not in IBAN_SEPARATORS:
+            seen += 1
+            if seen == expected:
+                cut = i + 1
+                if cut < len(value) and value[cut] in IBAN_SEPARATORS and iban_mod97(value[:cut]):
+                    return [(start, start + cut)], start + cut
+                break
+    return [], end
 
 
 def ipv4_octets(match: str) -> bool:
@@ -293,4 +389,12 @@ VALIDATORS = {
     "fr_siren": fr_siren,
     "es_dni": es_dni,
     "es_nie": es_nie,
+}
+
+#: Span refiners, keyed by validator name. A refiner turns one regex match into the
+#: spans to report (each already validated) and the offset where the scan resumes;
+#: the Tier-1 detector uses it in place of the plain validator.
+SPANNERS = {
+    "luhn": card_spans,
+    "iban_mod97": iban_spans,
 }
