@@ -1,6 +1,6 @@
 # algolia-pii entity specification (SSOT)
 #
-# Language-neutral. Every implementation (Python now, Go later) builds its
+# Language-neutral. Every implementation (Python and Go) builds its
 # detectors from this file and is tested against the golden corpus. A change to
 # detection behavior is a change here first.
 #

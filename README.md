@@ -247,7 +247,7 @@ vs [`docs/bench-baseline.png`](docs/bench-baseline.png). Reproduce:
 PYTHONPATH=src python -m pii.bench.cli compare
 ```
 
-The point estimate is 1.00 on this curated set; the CI floor is ~0.89. This is a
+The point estimate is 1.00 on this curated set; the CI floor is ~0.98. This is a
 tripwire demonstrated on a small, clean corpus, not a claim of field accuracy.
 
 ## Policy (the anonymizer half)
