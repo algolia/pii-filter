@@ -44,6 +44,8 @@ func (d regexDetector) Find(text string) []Finding {
 // Patterns. RE2-compatible (no lookaround); boundary conditions the spec
 // expresses with lookbehind are enforced in code (see phoneDetector) or by \b.
 var (
+	// The spec's left lookbehind exists to stop backtracking; RE2 scans in linear
+	// time without it and reports the same leftmost matches.
 	emailRe = regexp.MustCompile(`[A-Za-z0-9._%+\-]+@[A-Za-z0-9\-]+(?:\.[A-Za-z0-9\-]+)*\.[A-Za-z]{2,}`)
 	// Candidate phone: optional +CC, optional (area), then digit groups joined by
 	// a single separator. Validated by digit count + boundary checks.

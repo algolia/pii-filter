@@ -27,7 +27,11 @@ entities:
   - name: EMAIL
     tier: 1
     description: Email address.
-    regex: '[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}'
+    # The left lookbehind starts a match only at the head of a local-part run.
+    # Without it, a long run with no '@' is rescanned from every offset
+    # (quadratic: about 5 s on 100k letters). Matches are unchanged: a match
+    # from inside a run reaches the same '@' as one from its head.
+    regex: '(?<![A-Za-z0-9._%+-])[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}'
     validator: null
     default_policy: redact
 
