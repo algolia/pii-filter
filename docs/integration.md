@@ -13,7 +13,7 @@ The Go module is the repo root: `github.com/algolia/pii-filter`. No runtime file
 network hop — detection and policy run in-process.
 
 ```bash
-go get github.com/algolia/pii-filter@v0.2.0   # or @latest
+go get github.com/algolia/pii-filter@v0.2.1   # or @latest
 ```
 
 ```go
@@ -42,13 +42,13 @@ Package `algolia-pii`, imported as `pii`. The entity spec ships **inside the
 wheel**, so a plain install is self-contained — no checkout required.
 
 ```bash
-pip install "git+https://github.com/algolia/pii-filter@v0.2.0"
+pip install "git+https://github.com/algolia/pii-filter@v0.2.1"
 ```
 
 ```toml
 # or poetry, in pyproject.toml
 [tool.poetry.dependencies]
-algolia-pii = { git = "https://github.com/algolia/pii-filter.git", tag = "v0.2.0" }
+algolia-pii = { git = "https://github.com/algolia/pii-filter.git", tag = "v0.2.1" }
 ```
 
 ```python
@@ -71,7 +71,7 @@ import matplotlib, so a production image stays small. The bench harness
 (`pii.bench`, the `pii-bench` CLI, the README charts) needs the `bench` extra:
 
 ```bash
-pip install "algolia-pii[bench] @ git+https://github.com/algolia/pii-filter@v0.2.0"
+pip install "algolia-pii[bench] @ git+https://github.com/algolia/pii-filter@v0.2.1"
 poetry install --extras bench          # inside a checkout of this repo
 ```
 

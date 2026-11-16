@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.2.1 — 2026-11-17 · EMAIL ReDoS fix, grouped IBANs, card windows, compact E.164 phones
 
 ### Fixed
 - EMAIL no longer backtracks quadratically. With no left boundary, every start
