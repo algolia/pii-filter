@@ -151,8 +151,17 @@ entities:
 
   - name: IBAN
     tier: 1
-    description: International Bank Account Number.
-    regex: '(?<![A-Z0-9])[A-Z]{2}\d{2}[A-Z0-9]{11,30}(?![A-Z0-9])'
+    description: >-
+      International Bank Account Number, compact (DE89370400440532013000) or in
+      the printed 4-character groups (DE89 3704 0044 0532 0130 00) joined by one
+      kind of separator: space, no-break space, thin space, narrow no-break
+      space, dot or hyphen. Either case, but not mixed case.
+    # A grouped match can swallow a following 4-character word ("... 7034 from");
+    # the validator step then cuts it back to the country's IBAN length, at a
+    # group boundary (iban_spans in validators.py, ibanDetector in Go).
+    regex: '(?<![A-Za-z0-9])[A-Za-z]{2}[0-9]{2}(?:[A-Za-z0-9]{11,30}|(?:[ \u00a0\u2009\u202f.-][A-Za-z0-9]{4}){2,7}(?:[ \u00a0\u2009\u202f.-][A-Za-z0-9]{1,4})?)(?![A-Za-z0-9])'
+    # Per-country length + mod-97. Lowercase or grouped forms also need a country
+    # in the length table; the uppercase compact form keeps the 15..34 fallback.
     validator: iban_mod97
     default_policy: reject
 

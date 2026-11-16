@@ -104,14 +104,30 @@ def _load_iban_lengths() -> dict[str, int]:
 IBAN_LENGTHS: dict[str, int] = _load_iban_lengths()
 
 
+#: Separators allowed between the printed 4-character IBAN groups: space, no-break
+#: space, thin space, narrow no-break space, dot, hyphen (spec IBAN regex).
+IBAN_SEPARATORS = "\u0020\u00a0\u2009\u202f.-"
+
+
 def iban_mod97(match: str) -> bool:
     """IBAN validation: per-country length (ISO 13616) + mod-97 checksum
     (ISO 7064 MOD 97-10). Length is checked against the country code first, so a
-    wrong-length string is rejected before the (more expensive) checksum."""
-    s = match.replace(" ", "").upper()
+    wrong-length string is rejected before the (more expensive) checksum.
+
+    Grouped or lowercase input is a looser shape, so it must use one separator
+    kind, must not mix cases, and needs a country in the length table."""
+    seps = {ch for ch in match if ch in IBAN_SEPARATORS}
+    if len(seps) > 1:
+        return False
+    raw = "".join(ch for ch in match if ch not in IBAN_SEPARATORS)
+    if raw != raw.upper() and raw != raw.lower():
+        return False  # mixed case reads as a token (base62 id, key), not an IBAN
+    s = raw.upper()
     if not (15 <= len(s) <= 34):
         return False
     expected = IBAN_LENGTHS.get(s[:2])
+    if expected is None and (seps or raw != s):
+        return False
     if expected is not None and len(s) != expected:
         return False
     rearranged = s[4:] + s[:4]  # move the first four chars to the end
@@ -125,6 +141,32 @@ def iban_mod97(match: str) -> bool:
             return False
         remainder = (remainder * 100 + n) % 97 if n > 9 else (remainder * 10 + n) % 97
     return remainder == 1
+
+
+def iban_spans(text: str, start: int, end: int) -> tuple[list[tuple[int, int]], int]:
+    """Spans of the IBAN regex match text[start:end], and where to resume scanning.
+
+    A grouped match may have swallowed trailing 4-character groups that are not
+    part of the IBAN (a word, or a second IBAN after a 16-character one). When the
+    whole match fails, cut it at the country's IBAN length, but only where a
+    separator follows, so the cut drops whole groups. Scanning resumes at the cut,
+    so an IBAN that follows is still found."""
+    value = text[start:end]
+    if iban_mod97(value):
+        return [(start, end)], end
+    expected = IBAN_LENGTHS.get(value[:2].upper())
+    if expected is None or not any(ch in IBAN_SEPARATORS for ch in value):
+        return [], end
+    seen = 0
+    for i, ch in enumerate(value):
+        if ch not in IBAN_SEPARATORS:
+            seen += 1
+            if seen == expected:
+                cut = i + 1
+                if cut < len(value) and value[cut] in IBAN_SEPARATORS and iban_mod97(value[:cut]):
+                    return [(start, start + cut)], start + cut
+                break
+    return [], end
 
 
 def ipv4_octets(match: str) -> bool:
@@ -293,4 +335,11 @@ VALIDATORS = {
     "fr_siren": fr_siren,
     "es_dni": es_dni,
     "es_nie": es_nie,
+}
+
+#: Span refiners, keyed by validator name. A refiner turns one regex match into the
+#: spans to report (each already validated) and the offset where the scan resumes;
+#: the Tier-1 detector uses it in place of the plain validator.
+SPANNERS = {
+    "iban_mod97": iban_spans,
 }

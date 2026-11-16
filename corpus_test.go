@@ -261,6 +261,21 @@ func TestLuhnAndIBAN(t *testing.T) {
 	if validIBAN("DE863704004405320130") {
 		t.Error("DE IBAN of length 20 (want 22) passed validation")
 	}
+
+	// Grouped and lowercase forms (Python test_iban_grouped_and_lowercase_rules).
+	for in, want := range map[string]bool{
+		"DE89 3704 0044 0532 0130 00": true,
+		"de89-3704-0044-0532-0130-00": true,
+		"DE89 3704-0044 0532 0130 00": false, // two separator kinds
+		"dE89370400440532013000":      false, // mixed case
+		"QQ51ABCD0123456789012":       true,  // uppercase compact keeps the fallback
+		"qq51abcd0123456789012":       false,
+		"QQ51 ABCD 0123 4567 8901 2":  false,
+	} {
+		if got := validIBAN(in); got != want {
+			t.Errorf("validIBAN(%q) = %v, want %v", in, got, want)
+		}
+	}
 }
 
 func TestResolveOverlapsPrefersScoreAtEqualSpan(t *testing.T) {
@@ -278,5 +293,22 @@ func TestResolveOverlapsPrefersScoreAtEqualSpan(t *testing.T) {
 
 	if got := resolveOverlaps([]Finding{a, b}); got[0].Entity != EntityEmail {
 		t.Fatalf("exact tie should keep detector order, got %+v", got)
+	}
+}
+
+func TestIBANCutBackResumesScanning(t *testing.T) {
+	text := "BE68 5390 0754 7034 NL91 ABNA 0417 1643 00 then BE68 5390 0754 7034 1234"
+
+	var got []string
+
+	for _, f := range DefaultAnalyzer().Analyze(text) {
+		if f.Entity == EntityIBAN {
+			got = append(got, f.Text)
+		}
+	}
+
+	want := []string{"BE68 5390 0754 7034", "NL91 ABNA 0417 1643 00", "BE68 5390 0754 7034"}
+	if strings.Join(got, "|") != strings.Join(want, "|") {
+		t.Errorf("IBANs = %q, want %q", got, want)
 	}
 }

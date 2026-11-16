@@ -69,6 +69,26 @@ def test_iban_rejects_valid_checksum_wrong_country_length():
     assert iban_mod97("NL91ABNA0417164300")
 
 
+def test_iban_grouped_and_lowercase_rules():
+    from pii.validators import iban_mod97
+
+    assert iban_mod97("DE89 3704 0044 0532 0130 00")
+    assert iban_mod97("de89-3704-0044-0532-0130-00")
+    assert not iban_mod97("DE89 3704-0044 0532 0130 00")  # two separator kinds
+    assert not iban_mod97("dE89370400440532013000")  # mixed case
+    # QQ is not an IBAN country: the uppercase compact form keeps the generic
+    # 15..34 fallback, the looser grouped and lowercase forms do not.
+    assert iban_mod97("QQ51ABCD0123456789012")
+    assert not iban_mod97("qq51abcd0123456789012")
+    assert not iban_mod97("QQ51 ABCD 0123 4567 8901 2")
+
+
+def test_iban_cut_back_to_country_length_resumes_scanning():
+    text = "BE68 5390 0754 7034 NL91 ABNA 0417 1643 00 then BE68 5390 0754 7034 1234"
+    found = [f.value for f in Tier1Detector().detect(text) if f.entity == "IBAN"]
+    assert found == ["BE68 5390 0754 7034", "NL91 ABNA 0417 1643 00", "BE68 5390 0754 7034"]
+
+
 def test_phone_does_not_claim_invalid_ip():
     findings = Tier1Detector().detect("Tried 192.168.1.300 but it failed.")
     assert findings == []  # not a valid IP, not a phone

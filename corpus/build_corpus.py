@@ -140,9 +140,32 @@ IBANS = [
     build(["Sudan ", ("IBAN", "SD2129010501234001")]),
     build(["Somalia ", ("IBAN", "SO211000001001000100141")]),
     build(["Yemen ", ("IBAN", "YE15CBYE0001018861234567891234"), " account"]),
+    # Printed 4-character groups (ISO 13616 paper format), each separator the spec
+    # allows, and lowercase. BE68539007547034 is the registry's Belgian example.
+    build(["Bank details: ", ("IBAN", "DE89 3704 0044 0532 0130 00"), "."]),
+    build(["IBAN ", ("IBAN", "GB82 WEST 1234 5698 7654 32"), " (sort code on file)"]),
+    build(["RIB : ", ("IBAN", "FR14\u00a02004\u00a01010\u00a00505\u00a00001\u00a03M02\u00a0606"), " merci."]),
+    build(["NL ", ("IBAN", "NL91\u2009ABNA\u20090417\u20091643\u200900"), " ok"]),
+    build(["iban: ", ("IBAN", "NL91.ABNA.0417.1643.00")]),
+    build(["Wire to ", ("IBAN", "DE89-3704-0044-0532-0130-00"), " today."]),
+    build(["lowercase ", ("IBAN", "gb82west12345698765432"), " pasted from a form"]),
+    build(["iban ", ("IBAN", "de89 3704 0044 0532 0130 00"), " in lowercase"]),
+    # A 16-character IBAN ends on a full group, so the next word is read as one
+    # more group and cut back off at the country length.
+    build(["Pay ", ("IBAN", "BE68 5390 0754 7034"), " from the shared account."]),
+    build(["Old ", ("IBAN", "BE68 5390 0754 7034"), " new ", ("IBAN", "NL91 ABNA 0417 1643 00"), "."]),
+    build(["Accounts ", ("IBAN", "BE68 5390 0754 7034"), " ", ("IBAN", "NL91 ABNA 0417 1643 00"), "."]),
     # hard negatives: IBAN-shaped but mod-97 INVALID
     neg("Code DE00000000000000000000 is a placeholder."),
     neg("Token GB00WEST12345698765432 is fake."),
+    neg("Printed DE00 3704 0044 0532 0130 00 has a bad check."),
+    # Grouped, but two separator kinds: not the printed format.
+    neg("Mixed DE89 3704-0044 0532 0130 00 separators."),
+    # Mixed case reads as a token (base62 id, API key), not an IBAN.
+    neg("Token De89370400440532013000 in the log."),
+    # Passes mod-97, but QQ is no IBAN country: only the uppercase compact form
+    # keeps the unknown-country fallback.
+    neg("Lowercase qq51abcd0123456789012 is not tabled."),
 ]
 
 # --- IP ----------------------------------------------------------------------
