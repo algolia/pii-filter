@@ -112,10 +112,25 @@ CREDIT_CARDS = [
     build([("CREDIT_CARD", "4012888888881881"), " was charged."]),
     build(["amex ", ("CREDIT_CARD", "378282246310005"), " expires soon"]),
     build(["visa ", ("CREDIT_CARD", "4000 0566 5566 5556")]),
+    # An expiry, CVV or short reference in the same digit run: the run fails, a
+    # window of whole groups printed like a card passes.
+    build(["Card ", ("CREDIT_CARD", "4242 4242 4242 4242"), " 12/27, thanks."]),
+    build(["pay ", ("CREDIT_CARD", "5555 5555 5555 4444"), " 12 27 cvv on the back"]),
+    build(["visa ", ("CREDIT_CARD", "4012888888881881"), " 123"]),
+    build(["Ref 12 ", ("CREDIT_CARD", "4242 4242 4242 4242"), " on file"]),
+    build(["amex ", ("CREDIT_CARD", "3782 822463 10005"), " 1234"]),
+    build(["cards ", ("CREDIT_CARD", "4242 4242 4242 4242"), " ", ("CREDIT_CARD", "5555 5555 5555 4444"), "."]),
     # hard negatives: card-shaped but Luhn-INVALID (regex matches, validator rejects)
     neg("Ref 4242 4242 4242 4241 is not a card."),
     neg("Order 1234 5678 9012 3456 shipped."),
     neg("Tracking 1111 2222 3333 4444 today."),
+    neg("Ref 4242 4242 4242 4241 12/27 is not a card either."),
+    # A compact 20-digit id holds a valid card in its first 16 digits; with no
+    # group boundary inside, it is one id, not a card.
+    neg("Shipment id 42424242424242421227 created."),
+    # 16 single digits pass Luhn and the Visa prefix, but nobody prints a card as
+    # single digits: only card-shaped windows count.
+    neg("Scores 4 2 4 2 4 2 4 2 4 2 4 2 4 2 4 2 1 today."),
 ]
 
 # --- IBAN --------------------------------------------------------------------

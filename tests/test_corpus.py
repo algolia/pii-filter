@@ -89,6 +89,22 @@ def test_iban_cut_back_to_country_length_resumes_scanning():
     assert found == ["BE68 5390 0754 7034", "NL91 ABNA 0417 1643 00", "BE68 5390 0754 7034"]
 
 
+@pytest.mark.parametrize(
+    ("text", "cards"),
+    [
+        ("4242 4242 4242 4242 12/27", ["4242 4242 4242 4242"]),
+        ("4242-4242-4242-4242 123", ["4242-4242-4242-4242"]),
+        ("7 4242424242424242", ["4242424242424242"]),
+        ("4242424242424242 5555555555554444", ["4242424242424242", "5555555555554444"]),
+        ("42424242424242421227", []),  # compact 20 digits: one id, no window
+        ("4 2 4 2 4 2 4 2 4 2 4 2 4 2 4 2 1", []),  # valid digits, not printed like a card
+    ],
+)
+def test_card_windows_inside_a_longer_digit_run(text, cards):
+    found = [f.value for f in Tier1Detector().detect(text) if f.entity == "CREDIT_CARD"]
+    assert found == cards
+
+
 def test_phone_does_not_claim_invalid_ip():
     findings = Tier1Detector().detect("Tried 192.168.1.300 but it failed.")
     assert findings == []  # not a valid IP, not a phone

@@ -72,7 +72,61 @@ def valid_credit_card(match: str) -> bool:
     d = _digits(match)
     if not (13 <= len(d) <= 19):
         return False
-    return luhn(d) and _valid_card_network(d)
+    return _valid_card_network(d) and luhn(d)
+
+
+def _card_shape(sizes: list[int]) -> bool:
+    """Group sizes of a printed card: one compact group, 4-digit groups with a
+    shorter last one (4-4-4-4, 4-4-4-4-3), or Amex/Diners 4-6-5 and 4-6-4."""
+    if len(sizes) == 1 or sizes in ([4, 6, 5], [4, 6, 4]):
+        return True
+    return all(n == 4 for n in sizes[:-1]) and 1 <= sizes[-1] <= 4
+
+
+def card_spans(text: str, start: int, end: int) -> tuple[list[tuple[int, int]], int]:
+    """Card spans inside the digit run text[start:end] (spec CREDIT_CARD regex).
+
+    The run as a whole when it validates (any grouping, as before); otherwise
+    windows of whole digit groups holding 13-19 digits and printed like a card
+    (_card_shape), so a trailing expiry or CVV, or a leading short reference, no
+    longer hides the card. From each group the longest valid window wins, and the
+    scan moves past it. A compact run of 20+ digits (a long id) has no window, and
+    the shape rule keeps runs of small numbers from yielding one."""
+    groups: list[tuple[int, int]] = []
+    i = start
+    while i < end:
+        j = i
+        while j < end and "0" <= text[j] <= "9":
+            j += 1
+        groups.append((i, j))
+        i = j + 1  # skip the single separator
+    sizes = [b - a for a, b in groups]
+    spans: list[tuple[int, int]] = []
+    g = 0
+    while g < len(groups):
+        best = -1
+        digits = ""
+        if text[groups[g][0]] not in "23456":  # no issuer prefix starts otherwise
+            g += 1
+            continue
+        for k in range(g, len(groups)):
+            digits += text[groups[k][0] : groups[k][1]]
+            if len(digits) > 19:
+                break
+            whole = g == 0 and k == len(groups) - 1
+            if (
+                len(digits) >= 13
+                and _valid_card_network(digits)
+                and (whole or _card_shape(sizes[g : k + 1]))
+                and luhn(digits)
+            ):
+                best = k
+        if best < 0:
+            g += 1
+            continue
+        spans.append((groups[g][0], groups[best][1]))
+        g = best + 1
+    return spans, end
 
 
 # Official IBAN length per country (ISO 13616 / SWIFT IBAN Registry). An IBAN's
@@ -341,5 +395,6 @@ VALIDATORS = {
 #: spans to report (each already validated) and the offset where the scan resumes;
 #: the Tier-1 detector uses it in place of the plain validator.
 SPANNERS = {
+    "luhn": card_spans,
     "iban_mod97": iban_spans,
 }

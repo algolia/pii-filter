@@ -312,3 +312,28 @@ func TestIBANCutBackResumesScanning(t *testing.T) {
 		t.Errorf("IBANs = %q, want %q", got, want)
 	}
 }
+
+func TestCardWindowsInsideALongerDigitRun(t *testing.T) {
+	cases := map[string][]string{
+		"4242 4242 4242 4242 12/27":         {"4242 4242 4242 4242"},
+		"4242-4242-4242-4242 123":           {"4242-4242-4242-4242"},
+		"7 4242424242424242":                {"4242424242424242"},
+		"4242424242424242 5555555555554444": {"4242424242424242", "5555555555554444"},
+		"42424242424242421227":              nil, // compact 20 digits: one id
+		"4 2 4 2 4 2 4 2 4 2 4 2 4 2 4 2 1": nil, // not printed like a card
+	}
+
+	for text, want := range cases {
+		var got []string
+
+		for _, f := range DefaultAnalyzer().Analyze(text) {
+			if f.Entity == EntityCreditCard {
+				got = append(got, f.Text)
+			}
+		}
+
+		if strings.Join(got, "|") != strings.Join(want, "|") {
+			t.Errorf("%q: cards %q, want %q", text, got, want)
+		}
+	}
+}

@@ -51,9 +51,10 @@ var (
 	// Candidate phone: optional +CC, optional (area), then digit groups joined by
 	// a single separator. Validated by digit count + boundary checks.
 	phoneRe = regexp.MustCompile(`(?:\+\d{1,3}[ .\-]?)?(?:\(\d{1,4}\)[ .\-]?)?\d{1,8}(?:[ .\-]\d{1,8}){1,6}`)
-	// Card: 13-19 digits, optionally separated by single spaces/hyphens, ending
-	// on a digit (no trailing separator). Validated by Luhn.
-	creditCardRe = regexp.MustCompile(`\b\d(?:[ \-]?\d){12,18}\b`)
+	// Card: a whole digit run of 13+ digits, single spaces/hyphens between
+	// digits. creditCardDetector reports the run or its valid windows of whole
+	// groups (Python card_spans). Validated by Luhn + IIN + length.
+	creditCardRe = regexp.MustCompile(`[0-9](?:[ \-]?[0-9]){12,}`)
 	// IBAN: 2 letters, 2 check digits, then 11-30 alphanumerics, or 4-character
 	// groups joined by a separator (space, NBSP, thin space, narrow NBSP, dot,
 	// hyphen), either case. The trailing class stands in for the spec's
@@ -68,8 +69,110 @@ func newEmailDetector() Detector {
 	return regexDetector{entity: EntityEmail, re: emailRe, score: 1.0}
 }
 
-func newCreditCardDetector() Detector {
-	return regexDetector{entity: EntityCreditCard, re: creditCardRe, score: 1.0, validate: validCreditCard}
+func newCreditCardDetector() Detector { return creditCardDetector{} }
+
+// creditCardDetector mirrors Python's card_spans: the digit run when it
+// validates, otherwise windows of whole groups holding 13-19 digits (earliest
+// start, then the longest valid window), so an expiry, CVV or short reference
+// in the same run no longer hides the card. A compact run of 20+ digits has no
+// group boundary inside and yields nothing.
+type creditCardDetector struct{}
+
+func (creditCardDetector) Entity() Entity { return EntityCreditCard }
+
+func (creditCardDetector) Find(text string) []Finding {
+	var out []Finding
+
+	for _, loc := range creditCardRe.FindAllStringIndex(text, -1) {
+		// The spec's (?<![0-9]): a maximal run never starts right after a digit,
+		// but keep the guard explicit.
+		if loc[0] > 0 && isASCIIDigit(text[loc[0]-1]) {
+			continue
+		}
+
+		for _, sp := range cardWindows(text, loc[0], loc[1]) {
+			out = append(out, Finding{Entity: EntityCreditCard, Start: sp[0], End: sp[1], Score: 1.0, Tier: Tier1, Text: text[sp[0]:sp[1]]})
+		}
+	}
+
+	return out
+}
+
+// cardShape mirrors Python's _card_shape: one compact group, 4-digit groups
+// with a shorter last one, or Amex/Diners 4-6-5 and 4-6-4.
+func cardShape(sizes []int) bool {
+	if len(sizes) == 1 {
+		return true
+	}
+
+	if len(sizes) == 3 && sizes[0] == 4 && sizes[1] == 6 && (sizes[2] == 5 || sizes[2] == 4) {
+		return true
+	}
+
+	for _, n := range sizes[:len(sizes)-1] {
+		if n != 4 {
+			return false
+		}
+	}
+
+	last := sizes[len(sizes)-1]
+
+	return last >= 1 && last <= 4
+}
+
+func cardWindows(text string, start, end int) [][2]int {
+	var groups [][2]int
+
+	for i := start; i < end; {
+		j := i
+		for j < end && isASCIIDigit(text[j]) {
+			j++
+		}
+
+		groups = append(groups, [2]int{i, j})
+		i = j + 1 // skip the single separator
+	}
+
+	sizes := make([]int, len(groups))
+	for i, gr := range groups {
+		sizes[i] = gr[1] - gr[0]
+	}
+
+	var spans [][2]int
+
+	for g := 0; g < len(groups); {
+		if c := text[groups[g][0]]; c < '2' || c > '6' { // no issuer prefix starts otherwise
+			g++
+
+			continue
+		}
+
+		best := -1
+		digits := make([]byte, 0, 19)
+
+		for k := g; k < len(groups); k++ {
+			digits = append(digits, text[groups[k][0]:groups[k][1]]...)
+			if len(digits) > 19 {
+				break
+			}
+
+			whole := g == 0 && k == len(groups)-1
+			if len(digits) >= 13 && (whole || cardShape(sizes[g:k+1])) && validCreditCard(string(digits)) {
+				best = k
+			}
+		}
+
+		if best < 0 {
+			g++
+
+			continue
+		}
+
+		spans = append(spans, [2]int{groups[g][0], groups[best][1]})
+		g = best + 1
+	}
+
+	return spans
 }
 
 func newIBANDetector() Detector { return ibanDetector{} }
@@ -235,7 +338,7 @@ func validCreditCard(match string) bool {
 		return false
 	}
 
-	return luhnValid(digits) && validCardNetwork(digits)
+	return validCardNetwork(digits) && luhnValid(digits)
 }
 
 // validCardNetwork reports whether the digits match a known issuer IIN prefix
