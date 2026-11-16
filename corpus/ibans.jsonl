@@ -1,0 +1,17 @@
+{"text": "Wire to DE89370400440532013000 please.", "entities": [{"type": "IBAN", "start": 8, "end": 30, "value": "DE89370400440532013000"}]}
+{"text": "account GB82WEST12345698765432", "entities": [{"type": "IBAN", "start": 8, "end": 30, "value": "GB82WEST12345698765432"}]}
+{"text": "FR1420041010050500013M02606 is the FR account.", "entities": [{"type": "IBAN", "start": 0, "end": 27, "value": "FR1420041010050500013M02606"}]}
+{"text": "NL test NL91ABNA0417164300", "entities": [{"type": "IBAN", "start": 8, "end": 26, "value": "NL91ABNA0417164300"}]}
+{"text": "Burundi account BI4210000100010000332045181.", "entities": [{"type": "IBAN", "start": 16, "end": 43, "value": "BI4210000100010000332045181"}]}
+{"text": "Djibouti wire DJ2100010000000154000100186", "entities": [{"type": "IBAN", "start": 14, "end": 41, "value": "DJ2100010000000154000100186"}]}
+{"text": "FK88SC123456789012 is the Falklands account.", "entities": [{"type": "IBAN", "start": 0, "end": 18, "value": "FK88SC123456789012"}]}
+{"text": "Honduras HN88CABF00000000000250005469 on file", "entities": [{"type": "IBAN", "start": 9, "end": 37, "value": "HN88CABF00000000000250005469"}]}
+{"text": "Mongolia MN121234123456789123", "entities": [{"type": "IBAN", "start": 9, "end": 29, "value": "MN121234123456789123"}]}
+{"text": "Nicaragua refund to NI45BAPR00000013000003558124", "entities": [{"type": "IBAN", "start": 20, "end": 48, "value": "NI45BAPR00000013000003558124"}]}
+{"text": "Oman OM810180000001299123456 please.", "entities": [{"type": "IBAN", "start": 5, "end": 28, "value": "OM810180000001299123456"}]}
+{"text": "Russia RU0304452522540817810538091310419", "entities": [{"type": "IBAN", "start": 7, "end": 40, "value": "RU0304452522540817810538091310419"}]}
+{"text": "Sudan SD2129010501234001", "entities": [{"type": "IBAN", "start": 6, "end": 24, "value": "SD2129010501234001"}]}
+{"text": "Somalia SO211000001001000100141", "entities": [{"type": "IBAN", "start": 8, "end": 31, "value": "SO211000001001000100141"}]}
+{"text": "Yemen YE15CBYE0001018861234567891234 account", "entities": [{"type": "IBAN", "start": 6, "end": 36, "value": "YE15CBYE0001018861234567891234"}]}
+{"text": "Code DE00000000000000000000 is a placeholder.", "entities": []}
+{"text": "Token GB00WEST12345698765432 is fake.", "entities": []}

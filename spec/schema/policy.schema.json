@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://algolia.com/pii/policy.schema.json",
+  "title": "Policy",
+  "description": "What to do with a detected entity. Detection and policy are separate concerns.",
+  "type": "string",
+  "enum": ["reject", "redact", "hash", "tokenize", "flag", "allow"],
+  "$comment": "reject = drop record + alert (default for public indices); redact = mask; hash = stable hash; tokenize = reversible vault token; flag = pass + annotate for human review; allow = explicit allowlist."
+}

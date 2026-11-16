@@ -1,0 +1,13 @@
+{"text": "NIR 1 52 19 97 268 077 65 sur la feuille de soins.", "entities": [{"type": "FR_NIR", "start": 4, "end": 25, "value": "1 52 19 97 268 077 65"}]}
+{"text": "NIR 1 19 15 97 031 285 83 illisible.", "entities": [{"type": "PHONE", "start": 4, "end": 25, "value": "1 19 15 97 031 285 83"}]}
+{"text": "Numéro fiscal 00 00 000 035 035 sur l'avis.", "entities": [{"type": "FR_TAX_ID", "start": 14, "end": 31, "value": "00 00 000 035 035"}]}
+{"text": "SIRET 36438999960016 (siège)", "entities": [{"type": "FR_SIRET", "start": 6, "end": 20, "value": "36438999960016"}]}
+{"text": "Carte 36438999960016 expirée.", "entities": [{"type": "CREDIT_CARD", "start": 6, "end": 20, "value": "36438999960016"}]}
+{"text": "SIREN 000 383 380 au registre.", "entities": [{"type": "FR_SIREN", "start": 6, "end": 17, "value": "000 383 380"}]}
+{"text": "Appelez le 000 766 196 demain.", "entities": [{"type": "PHONE", "start": 11, "end": 22, "value": "000 766 196"}]}
+{"text": "SIRET : 000 396 911 08631.", "entities": [{"type": "FR_SIRET", "start": 8, "end": 25, "value": "000 396 911 08631"}]}
+{"text": "SIRET : 000 097 840 05288.", "entities": [{"type": "PHONE", "start": 8, "end": 25, "value": "000 097 840 05288"}]}
+{"text": "Assuré 287143529888529, tél. 04 65 71 36 24, mail assure@example.org.", "entities": [{"type": "FR_NIR", "start": 7, "end": 22, "value": "287143529888529"}, {"type": "PHONE", "start": 29, "end": 43, "value": "04 65 71 36 24"}, {"type": "EMAIL", "start": 50, "end": 68, "value": "assure@example.org"}]}
+{"text": "SIREN et IBAN : FR1420041010050500013M02606 pour le virement.", "entities": [{"type": "IBAN", "start": 16, "end": 43, "value": "FR1420041010050500013M02606"}]}
+{"text": "SIRET 4242 4242 4242 4242 n'est pas un siret.", "entities": [{"type": "CREDIT_CARD", "start": 6, "end": 25, "value": "4242 4242 4242 4242"}]}
+{"text": "DNI 99331844L o llame al +33 2 61 91 34 56.", "entities": [{"type": "ES_DNI", "start": 4, "end": 13, "value": "99331844L"}, {"type": "PHONE", "start": 25, "end": 42, "value": "+33 2 61 91 34 56"}]}

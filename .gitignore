@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+dist/
+*.egg-info/
+charts/
+# Tier-2 bench raw data (downloaded on demand; dumps, not committed — only dataset.json is)
+bench/tier2/data/
+bench/tier2/venv/

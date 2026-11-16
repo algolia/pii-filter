@@ -1,0 +1,47 @@
+{"text": "SIREN : 000612473", "entities": [{"type": "FR_SIREN", "start": 8, "end": 17, "value": "000612473"}]}
+{"text": "Siren 000 589 697", "entities": [{"type": "FR_SIREN", "start": 6, "end": 17, "value": "000 589 697"}]}
+{"text": "N° SIREN 000853416", "entities": [{"type": "FR_SIREN", "start": 9, "end": 18, "value": "000853416"}]}
+{"text": "RCS Paris 000.226.332", "entities": [{"type": "FR_SIREN", "start": 10, "end": 21, "value": "000.226.332"}]}
+{"text": "RCS Lyon B 000365866", "entities": [{"type": "FR_SIREN", "start": 11, "end": 20, "value": "000365866"}]}
+{"text": "Numéro d'entreprise : 000 825 422", "entities": [{"type": "FR_SIREN", "start": 22, "end": 33, "value": "000 825 422"}]}
+{"text": "NUMÉRO D'IDENTIFICATION 000853432", "entities": [{"type": "FR_SIREN", "start": 24, "end": 33, "value": "000853432"}]}
+{"text": "numero d’identification 000.411.363", "entities": [{"type": "FR_SIREN", "start": 24, "end": 35, "value": "000.411.363"}]}
+{"text": "Immatriculation : 000155408", "entities": [{"type": "FR_SIREN", "start": 18, "end": 27, "value": "000155408"}]}
+{"text": "Company number 000 842 120", "entities": [{"type": "FR_SIREN", "start": 15, "end": 26, "value": "000 842 120"}]}
+{"text": "company registration: 000088419", "entities": [{"type": "FR_SIREN", "start": 22, "end": 31, "value": "000088419"}]}
+{"text": "Business ID 000.939.637", "entities": [{"type": "FR_SIREN", "start": 12, "end": 23, "value": "000.939.637"}]}
+{"text": "Société au capital de 10 000 euros, SIREN 000194365", "entities": [{"type": "FR_SIREN", "start": 42, "end": 51, "value": "000194365"}]}
+{"text": "sirene 000 184 895", "entities": [{"type": "FR_SIREN", "start": 7, "end": 18, "value": "000 184 895"}]}
+{"text": "SIRET/SIREN : 000181289", "entities": [{"type": "FR_SIREN", "start": 14, "end": 23, "value": "000181289"}]}
+{"text": "inscrite au registre du commerce sous le 000.010.801", "entities": [{"type": "FR_SIREN", "start": 41, "end": 52, "value": "000.010.801"}]}
+{"text": "SIREN : 000194761", "entities": [{"type": "FR_SIREN", "start": 8, "end": 17, "value": "000194761"}]}
+{"text": "Siren 000 736 587", "entities": [{"type": "FR_SIREN", "start": 6, "end": 17, "value": "000 736 587"}]}
+{"text": "N° SIREN 000103432", "entities": [{"type": "FR_SIREN", "start": 9, "end": 18, "value": "000103432"}]}
+{"text": "RCS Paris 000.357.400", "entities": [{"type": "FR_SIREN", "start": 10, "end": 21, "value": "000.357.400"}]}
+{"text": "Commande 000097758 expédiée.", "entities": []}
+{"text": "Order 000857037 shipped today.", "entities": []}
+{"text": "Ticket #000941153 ouvert.", "entities": []}
+{"text": "Le colis 000683755 est arrivé.", "entities": []}
+{"text": "ref 000437954", "entities": []}
+{"text": "Commande 000312959 expédiée.", "entities": []}
+{"text": "Order 000871426 shipped today.", "entities": []}
+{"text": "Ticket #000678946 ouvert.", "entities": []}
+{"text": "Le colis 000908061 est arrivé.", "entities": []}
+{"text": "ref 000364893", "entities": []}
+{"text": "SIREN -- voir la fiche jointe, mise a jour le mois dernier : 000304998", "entities": []}
+{"text": "RCS Nanterre -- voir la fiche jointe, mise a jour le mois dernier : 000536698", "entities": []}
+{"text": "Numéro d'entreprise -- voir la fiche jointe, mise a jour le mois dernier : 000650853", "entities": []}
+{"text": "000766576 est notre siren.", "entities": []}
+{"text": "000624965 (siren)", "entities": []}
+{"text": "SIREN : 000270425", "entities": []}
+{"text": "Siren 000844841", "entities": []}
+{"text": "N° SIREN 000867164", "entities": []}
+{"text": "RCS Paris 000201476", "entities": []}
+{"text": "RCS Lyon B 000431500", "entities": []}
+{"text": "Numéro d'entreprise : 000999230", "entities": []}
+{"text": "NUMÉRO D'IDENTIFICATION 000175371", "entities": []}
+{"text": "numero d’identification 000143335", "entities": []}
+{"text": "SIREN : 4575986018 (10 chiffres)", "entities": []}
+{"text": "RCS 32898615 incomplet", "entities": []}
+{"text": "SIREN demandé le 16/11/2026, toujours en attente.", "entities": []}
+{"text": "Company number? Call 04 65 71 17 48 instead.", "entities": [{"type": "PHONE", "start": 21, "end": 35, "value": "04 65 71 17 48"}]}

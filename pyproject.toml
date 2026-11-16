@@ -1,0 +1,41 @@
+[project]
+name = "algolia-pii"
+version = "0.2.0"
+description = "Algolia PII detection and policy: shared spec, golden corpus, and a calibrated evaluation harness."
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.11"
+dependencies = [
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+# Optional libphonenumber-backed phone validation. Absent by default:
+# the core install uses the deterministic digit-count heuristic. Enable with
+#   pip install "algolia-pii[phone]"
+# then Tier1Detector(strict_phone=True).
+phone = ["phonenumbers>=8.13"]
+# The bench harness (pii.bench, pii-bench CLI, README charts). Kept out of the core
+# install so a production image that only detects and redacts never pulls matplotlib:
+#   pip install "algolia-pii[bench]"   /   poetry install --extras bench
+bench = ["matplotlib>=3.8"]
+
+[project.scripts]
+pii-bench = "pii.bench.cli:main"
+
+[build-system]
+requires = ["poetry-core>=2.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+packages = [{ include = "pii", from = "src" }]
+# Ship the entity spec inside the package so wheels are self-contained.
+# src/pii/entities.yaml is the canonical spec; spec/entities.yaml symlinks to it.
+include = [
+    { path = "src/pii/entities.yaml", format = ["sdist", "wheel"] },
+    { path = "src/pii/iban_lengths.json", format = ["sdist", "wheel"] },
+]
+
+[tool.poetry.group.dev.dependencies]
+pytest = ">=8.0"
+jsonschema = ">=4.20"

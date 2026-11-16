@@ -1,0 +1,8 @@
+{"text": "Card on file: 4242 4242 4242 4242.", "entities": [{"type": "CREDIT_CARD", "start": 14, "end": 33, "value": "4242 4242 4242 4242"}]}
+{"text": "pay with 5555 5555 5555 4444", "entities": [{"type": "CREDIT_CARD", "start": 9, "end": 28, "value": "5555 5555 5555 4444"}]}
+{"text": "4012888888881881 was charged.", "entities": [{"type": "CREDIT_CARD", "start": 0, "end": 16, "value": "4012888888881881"}]}
+{"text": "amex 378282246310005 expires soon", "entities": [{"type": "CREDIT_CARD", "start": 5, "end": 20, "value": "378282246310005"}]}
+{"text": "visa 4000 0566 5566 5556", "entities": [{"type": "CREDIT_CARD", "start": 5, "end": 24, "value": "4000 0566 5566 5556"}]}
+{"text": "Ref 4242 4242 4242 4241 is not a card.", "entities": []}
+{"text": "Order 1234 5678 9012 3456 shipped.", "entities": []}
+{"text": "Tracking 1111 2222 3333 4444 today.", "entities": []}

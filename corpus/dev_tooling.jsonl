@@ -1,0 +1,11 @@
+{"text": "Committed on Mon Jun 13 in the release branch.", "entities": []}
+{"text": "See github.com/algolia/pii-filter for the source.", "entities": []}
+{"text": "require github.com/algolia/pii-filter v0.1.0", "entities": []}
+{"text": "go get github.com/algolia/pii-filter/cmd/pii", "entities": []}
+{"text": "The handler calls logger.Info() before returning.", "entities": []}
+{"text": "Matched pattern PatientRecord in the grep echo.", "entities": []}
+{"text": "See arXiv:2506.12345 for the benchmark.", "entities": []}
+{"text": "Reference 2506.12345 in the notes.", "entities": []}
+{"text": "Robin Marsh committed the migration on the feature branch.", "entities": []}
+{"text": "Fixed in commit a51519bc9f2e1d3c4b5a6f7e8d9c0b1a2f3e4d5c today.", "entities": []}
+{"text": "Upgraded to version 1.2.3 and rebuilt.", "entities": []}

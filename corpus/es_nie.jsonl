@@ -1,0 +1,25 @@
+{"text": "NIE X0000000T", "entities": [{"type": "ES_NIE", "start": 4, "end": 13, "value": "X0000000T"}]}
+{"text": "NIE: Y-0000000-Z", "entities": [{"type": "ES_NIE", "start": 5, "end": 16, "value": "Y-0000000-Z"}]}
+{"text": "Número de identidad de extranjero Z9730309A", "entities": [{"type": "ES_NIE", "start": 34, "end": 43, "value": "Z9730309A"}]}
+{"text": "foreigner id (NIE) X 0000000 T", "entities": [{"type": "ES_NIE", "start": 19, "end": 30, "value": "X 0000000 T"}]}
+{"text": "Tarjeta de residencia Y0000000Z", "entities": [{"type": "ES_NIE", "start": 22, "end": 31, "value": "Y0000000Z"}]}
+{"text": "Z9873359Q es mi NIE.", "entities": [{"type": "ES_NIE", "start": 0, "end": 9, "value": "Z9873359Q"}]}
+{"text": "Titular: X-0000000-T", "entities": [{"type": "ES_NIE", "start": 9, "end": 20, "value": "X-0000000-T"}]}
+{"text": "NIE Y0000000Z", "entities": [{"type": "ES_NIE", "start": 4, "end": 13, "value": "Y0000000Z"}]}
+{"text": "NIE: Z 9874333 R", "entities": [{"type": "ES_NIE", "start": 5, "end": 16, "value": "Z 9874333 R"}]}
+{"text": "Número de identidad de extranjero X0000000T", "entities": [{"type": "ES_NIE", "start": 34, "end": 43, "value": "X0000000T"}]}
+{"text": "foreigner id (NIE) Y0000000Z", "entities": [{"type": "ES_NIE", "start": 19, "end": 28, "value": "Y0000000Z"}]}
+{"text": "Tarjeta de residencia Z-9938036-V", "entities": [{"type": "ES_NIE", "start": 22, "end": 33, "value": "Z-9938036-V"}]}
+{"text": "X0000000T es mi NIE.", "entities": [{"type": "ES_NIE", "start": 0, "end": 9, "value": "X0000000T"}]}
+{"text": "Titular: Y 0000000 Z", "entities": [{"type": "ES_NIE", "start": 9, "end": 20, "value": "Y 0000000 Z"}]}
+{"text": "NIE Z9251509V", "entities": [{"type": "ES_NIE", "start": 4, "end": 13, "value": "Z9251509V"}]}
+{"text": "NIE X0000000P", "entities": []}
+{"text": "NIE: Y0000000N", "entities": []}
+{"text": "Número de identidad de extranjero Z9765497E", "entities": []}
+{"text": "foreigner id (NIE) X0000000A", "entities": []}
+{"text": "Tarjeta de residencia Y0000000J", "entities": []}
+{"text": "Z9339927Y es mi NIE.", "entities": []}
+{"text": "Permiso W0000000L caducado.", "entities": []}
+{"text": "NIE X000000L incompleto.", "entities": []}
+{"text": "nie en minúsculas y0000000z", "entities": []}
+{"text": "Modelo X0000000 sin letra final.", "entities": []}

@@ -1,0 +1,127 @@
+{
+  "dataset_meta": {
+    "seed": 42,
+    "n_samples": 200,
+    "n_person_mentions": 129,
+    "n_address_mentions": 103,
+    "n_partial_person": 50,
+    "n_negatives": 50,
+    "sources": {
+      "address": "synthetic: invented communes and street names (synth_addresses)",
+      "first_names": "https://static.data.gouv.fr/resources/base-prenoms-insee-format-parquet/20231121-161435/prenoms-nat2022.parquet",
+      "surnames": "INSEE most-common family-name ranking (baked list, documented)"
+    }
+  },
+  "threshold": 0.5,
+  "models": [
+    {
+      "model": "gliner2-pii",
+      "n_examples": 200,
+      "per_entity": {
+        "PERSON": {
+          "exact": {
+            "tp": 128,
+            "fp": 10,
+            "fn": 1,
+            "n_gold": 129,
+            "n_pred": 138,
+            "precision": 0.9275,
+            "precision_ci": [
+              0.8815,
+              0.9658
+            ],
+            "recall": 0.9922,
+            "recall_ci": [
+              0.9752,
+              1.0
+            ],
+            "f1": 0.9588,
+            "f1_ci": [
+              0.9297,
+              0.9817
+            ]
+          },
+          "partial": {
+            "tp": 129,
+            "fp": 9,
+            "fn": 0,
+            "n_gold": 129,
+            "n_pred": 138,
+            "precision": 0.9348,
+            "precision_ci": [
+              0.8905,
+              0.9714
+            ],
+            "recall": 1.0,
+            "recall_ci": [
+              1.0,
+              1.0
+            ],
+            "f1": 0.9663,
+            "f1_ci": [
+              0.9421,
+              0.9855
+            ]
+          }
+        },
+        "ADDRESS": {
+          "exact": {
+            "tp": 59,
+            "fp": 112,
+            "fn": 44,
+            "n_gold": 103,
+            "n_pred": 171,
+            "precision": 0.345,
+            "precision_ci": [
+              0.264,
+              0.4405
+            ],
+            "recall": 0.5728,
+            "recall_ci": [
+              0.4762,
+              0.6697
+            ],
+            "f1": 0.4307,
+            "f1_ci": [
+              0.3403,
+              0.5303
+            ]
+          },
+          "partial": {
+            "tp": 103,
+            "fp": 68,
+            "fn": 0,
+            "n_gold": 103,
+            "n_pred": 171,
+            "precision": 0.6023,
+            "precision_ci": [
+              0.5479,
+              0.6646
+            ],
+            "recall": 1.0,
+            "recall_ci": [
+              1.0,
+              1.0
+            ],
+            "f1": 0.7518,
+            "f1_ci": [
+              0.7079,
+              0.7985
+            ]
+          }
+        }
+      },
+      "person_recall_by_form": {
+        "full": {
+          "n_gold": 79,
+          "recall": 1.0
+        },
+        "partial": {
+          "n_gold": 50,
+          "recall": 1.0
+        }
+      },
+      "infer_ms_median": 98.63
+    }
+  ]
+}

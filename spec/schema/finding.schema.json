@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://algolia.com/pii/finding.schema.json",
+  "title": "Finding",
+  "description": "A single detected PII entity occurrence. span is [start, end) over the original text.",
+  "type": "object",
+  "required": ["entity", "start", "end", "value"],
+  "additionalProperties": false,
+  "properties": {
+    "entity": {
+      "type": "string",
+      "description": "Entity type, e.g. EMAIL, PHONE, CREDIT_CARD, IBAN, IP, PERSON, ADDRESS."
+    },
+    "start": { "type": "integer", "minimum": 0 },
+    "end": { "type": "integer", "minimum": 0 },
+    "value": { "type": "string" },
+    "score": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "description": "1.0 for deterministic (Tier-1) detectors; < 1.0 for probabilistic (Tier-2)."
+    },
+    "tier": { "type": "integer", "enum": [1, 2] },
+    "detector": { "type": "string" }
+  }
+}

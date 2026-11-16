@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://algolia.com/pii/entities.schema.json",
+  "title": "Entity specification",
+  "description": "Shape of spec/entities.yaml, the SSOT both implementations build their detectors from.",
+  "type": "object",
+  "required": ["version", "entities"],
+  "additionalProperties": false,
+  "properties": {
+    "version": { "type": "integer", "minimum": 1 },
+    "entities": {
+      "type": "array",
+      "description": "Deterministic entities. At an exact overlap tie (same span, same score) the entity listed first wins.",
+      "items": { "$ref": "#/$defs/deterministicEntity" }
+    },
+    "tier2_entities": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/tier2Entity" }
+    }
+  },
+  "$defs": {
+    "policy": { "enum": ["reject", "redact", "hash", "tokenize", "flag", "allow"] },
+    "name": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]*$" },
+    "deterministicEntity": {
+      "type": "object",
+      "required": ["name", "tier", "description", "regex", "default_policy"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "$ref": "#/$defs/name" },
+        "tier": { "const": 1 },
+        "description": { "type": "string" },
+        "regex": { "type": "string", "minLength": 1 },
+        "validator": { "type": ["string", "null"] },
+        "default_policy": { "$ref": "#/$defs/policy" },
+        "requires_context": {
+          "type": "boolean",
+          "description": "Keyword gate (Tier 1.5): report a match only when a context keyword precedes it."
+        },
+        "context_keywords": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 },
+          "description": "Matched as whole words, case- and accent-insensitive, in the window before the match."
+        },
+        "context_window": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "How many characters before the match start are searched for a keyword."
+        }
+      },
+      "if": {
+        "properties": { "requires_context": { "const": true } },
+        "required": ["requires_context"]
+      },
+      "then": { "required": ["context_keywords", "context_window"] },
+      "else": {
+        "not": {
+          "anyOf": [{ "required": ["context_keywords"] }, { "required": ["context_window"] }]
+        }
+      }
+    },
+    "tier2Entity": {
+      "type": "object",
+      "required": ["name", "tier", "description", "default_policy"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "$ref": "#/$defs/name" },
+        "tier": { "const": 2 },
+        "description": { "type": "string" },
+        "default_policy": { "$ref": "#/$defs/policy" }
+      }
+    }
+  }
+}

@@ -1,0 +1,2959 @@
+{
+  "meta": {
+    "seed": 42,
+    "n_samples": 200,
+    "n_person_mentions": 129,
+    "n_address_mentions": 103,
+    "n_partial_person": 50,
+    "n_negatives": 50,
+    "sources": {
+      "address": "synthetic: invented communes and street names (synth_addresses)",
+      "first_names": "https://static.data.gouv.fr/resources/base-prenoms-insee-format-parquet/20231121-161435/prenoms-nat2022.parquet",
+      "surnames": "INSEE most-common family-name ranking (baked list, documented)"
+    }
+  },
+  "samples": [
+    {
+      "text": "Bonjour, je m'appelle Oscar Philippe. Je n'ai pas recu ma commande livree au 31 route de Font-Romeyre 48110 Aigueplane. Pouvez-vous verifier le suivi ?",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 22,
+          "end": 36,
+          "value": "Oscar Philippe"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 77,
+          "end": 118,
+          "value": "31 route de Font-Romeyre 48110 Aigueplane"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "facture Florian Roy adresse 53 chemin de Font-Romeyre 48300 Mazelbrune",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 8,
+          "end": 19,
+          "value": "Florian Roy"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 28,
+          "end": 70,
+          "value": "53 chemin de Font-Romeyre 48300 Mazelbrune"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "retour produit Imran Vincent 31 route de Saint-Orvald 48300 La Bastide-Ferrandal",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 15,
+          "end": 28,
+          "value": "Imran Vincent"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 29,
+          "end": 80,
+          "value": "31 route de Saint-Orvald 48300 La Bastide-Ferrandal"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "Bonjour, ma commande devait etre livree chez I. Aubert, 45 rue de la Tour 48170 Combefraîche, mais le colis est marque comme perdu. Merci de votre aide.",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 45,
+          "end": 54,
+          "value": "I. Aubert"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 56,
+          "end": 92,
+          "value": "45 rue de la Tour 48170 Combefraîche"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "partial",
+      "has_address": true
+    },
+    {
+      "text": "Bonjour, le colis adresse a Mlle Lopez au 40 chemin du Couvent 48500 Castelvérine n'est jamais arrive. Que faut-il faire pour un remboursement ?",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 28,
+          "end": 38,
+          "value": "Mlle Lopez"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 42,
+          "end": 81,
+          "value": "40 chemin du Couvent 48500 Castelvérine"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "partial",
+      "has_address": true
+    },
+    {
+      "text": "livraison Amélie Laurent 19 rue du Four 48150 Saint-Ivarel-d'Olt",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 10,
+          "end": 24,
+          "value": "Amélie Laurent"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 25,
+          "end": 64,
+          "value": "19 rue du Four 48150 Saint-Ivarel-d'Olt"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "Bonjour, je suis Mlle Garnier et je souhaite modifier l'adresse de livraison de ma prochaine commande. Merci d'avance.",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 17,
+          "end": 29,
+          "value": "Mlle Garnier"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "partial",
+      "has_address": false
+    },
+    {
+      "text": "Bonjour, je m'appelle Malik Nicolas. Je n'ai pas recu ma commande livree au 21 route de Mazelbrune 48500 Peyrelongue-sur-Lot. Pouvez-vous verifier le suivi ?",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 22,
+          "end": 35,
+          "value": "Malik Nicolas"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 76,
+          "end": 124,
+          "value": "21 route de Mazelbrune 48500 Peyrelongue-sur-Lot"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "Bonjour, le colis adresse a Manon Perez au 53 rue de la Calade 48130 Saint-Aurel-de-Brousse n'est jamais arrive. Que faut-il faire pour un remboursement ?",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 28,
+          "end": 39,
+          "value": "Manon Perez"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 43,
+          "end": 91,
+          "value": "53 rue de la Calade 48130 Saint-Aurel-de-Brousse"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "matelas mémoire de forme 140x190 ferme",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "colis 15 rue des Jardins 48230 Saint-Ivarel-d'Olt",
+      "entities": [
+        {
+          "entity": "ADDRESS",
+          "start": 6,
+          "end": 49,
+          "value": "15 rue des Jardins 48230 Saint-Ivarel-d'Olt"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "none",
+      "has_address": true
+    },
+    {
+      "text": "peut-on suivre un colis sans numéro de suivi ?",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "matelas mémoire de forme 140x190 ferme",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "Bonjour, pouvez-vous confirmer que la commande de Sophia Guerin sera bien expediee cette semaine ? Le delai annonce etait de trois jours.",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 50,
+          "end": 63,
+          "value": "Sophia Guerin"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "full",
+      "has_address": false
+    },
+    {
+      "text": "sac à dos ordinateur portable 15 pouces étanche",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "livraison M. Deschamps 40 rue de l'Église 48500 Saint-Orvald",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 10,
+          "end": 22,
+          "value": "M. Deschamps"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 23,
+          "end": 60,
+          "value": "40 rue de l'Église 48500 Saint-Orvald"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "partial",
+      "has_address": true
+    },
+    {
+      "text": "commande N. Dupuis",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 9,
+          "end": 18,
+          "value": "N. Dupuis"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "partial",
+      "has_address": false
+    },
+    {
+      "text": "Bonjour, ma commande devait etre livree chez Maya Sanchez, 44 rue de la Tour 48170 Mazelbrune, mais le colis est marque comme perdu. Merci de votre aide.",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 45,
+          "end": 57,
+          "value": "Maya Sanchez"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 59,
+          "end": 93,
+          "value": "44 rue de la Tour 48170 Mazelbrune"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "commande Milan Leroy",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 9,
+          "end": 20,
+          "value": "Milan Leroy"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "full",
+      "has_address": false
+    },
+    {
+      "text": "facture Florence Moreau adresse 40 route de Castelvérine 48170 Brugeiroles",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 8,
+          "end": 23,
+          "value": "Florence Moreau"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 32,
+          "end": 74,
+          "value": "40 route de Castelvérine 48170 Brugeiroles"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "retour produit P. Jean 42 impasse du Pont 48170 Saint-Aurel-de-Brousse",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 15,
+          "end": 22,
+          "value": "P. Jean"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 23,
+          "end": 70,
+          "value": "42 impasse du Pont 48170 Saint-Aurel-de-Brousse"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "partial",
+      "has_address": true
+    },
+    {
+      "text": "puis-je changer le mode de livraison après la commande ?",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "facture Mme Thomas adresse 54 avenue des Écoles 48500 Saint-Orvald",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 8,
+          "end": 18,
+          "value": "Mme Thomas"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 27,
+          "end": 66,
+          "value": "54 avenue des Écoles 48500 Saint-Orvald"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "partial",
+      "has_address": true
+    },
+    {
+      "text": "colis 36 rue des Tilleuls 48250 Sainte-Ondine-du-Causse",
+      "entities": [
+        {
+          "entity": "ADDRESS",
+          "start": 6,
+          "end": 55,
+          "value": "36 rue des Tilleuls 48250 Sainte-Ondine-du-Causse"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "none",
+      "has_address": true
+    },
+    {
+      "text": "Bonjour, pouvez-vous confirmer que la commande de H. Bourgeois sera bien expediee cette semaine ? Le delai annonce etait de trois jours.",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 50,
+          "end": 62,
+          "value": "H. Bourgeois"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "partial",
+      "has_address": false
+    },
+    {
+      "text": "Bonjour, je voudrais signaler un probleme de livraison a l'adresse 12 rue de l'Église 48230 Montaurès. Le livreur n'a pas sonne. Merci.",
+      "entities": [
+        {
+          "entity": "ADDRESS",
+          "start": 67,
+          "end": 101,
+          "value": "12 rue de l'Église 48230 Montaurès"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "none",
+      "has_address": true
+    },
+    {
+      "text": "Bonjour, je voudrais signaler un probleme de livraison a l'adresse 56 rue du Couvent 48310 Le Mas-Fouillade. Le livreur n'a pas sonne. Merci.",
+      "entities": [
+        {
+          "entity": "ADDRESS",
+          "start": 67,
+          "end": 107,
+          "value": "56 rue du Couvent 48310 Le Mas-Fouillade"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "none",
+      "has_address": true
+    },
+    {
+      "text": "chaussures de sécurité antidérapantes semelle renforcée",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "commande M. Louis",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 9,
+          "end": 17,
+          "value": "M. Louis"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "partial",
+      "has_address": false
+    },
+    {
+      "text": "quels sont les horaires du service client le week-end ?",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "ou est ma commande Lana Martinez",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 19,
+          "end": 32,
+          "value": "Lana Martinez"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "full",
+      "has_address": false
+    },
+    {
+      "text": "commande Maxence Dupont",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 9,
+          "end": 23,
+          "value": "Maxence Dupont"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "full",
+      "has_address": false
+    },
+    {
+      "text": "Elie Bertrand 18 rue du Pont 48110 Chanteval-le-Haut",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 0,
+          "end": 13,
+          "value": "Elie Bertrand"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 14,
+          "end": 52,
+          "value": "18 rue du Pont 48110 Chanteval-le-Haut"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "Bonjour, ma commande devait etre livree chez Mlle Meyer, 34 route du Mas-Fouillade 48130 Saint-Ivarel-d'Olt, mais le colis est marque comme perdu. Merci de votre aide.",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 45,
+          "end": 55,
+          "value": "Mlle Meyer"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 57,
+          "end": 107,
+          "value": "34 route du Mas-Fouillade 48130 Saint-Ivarel-d'Olt"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "partial",
+      "has_address": true
+    },
+    {
+      "text": "ou est ma commande Megane Lemoine",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 19,
+          "end": 33,
+          "value": "Megane Lemoine"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "full",
+      "has_address": false
+    },
+    {
+      "text": "suivi colis Thomas Brunet",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 12,
+          "end": 25,
+          "value": "Thomas Brunet"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "full",
+      "has_address": false
+    },
+    {
+      "text": "Bonjour, je suis P. Pierre et je souhaite modifier l'adresse de livraison de ma prochaine commande. Merci d'avance.",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 17,
+          "end": 26,
+          "value": "P. Pierre"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "partial",
+      "has_address": false
+    },
+    {
+      "text": "Bonjour, je m'appelle Mme Renard. Je n'ai pas recu ma commande livree au 40 route de Saint-Ivarel-d'Olt 48200 Fontbelade. Pouvez-vous verifier le suivi ?",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 22,
+          "end": 32,
+          "value": "Mme Renard"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 73,
+          "end": 120,
+          "value": "40 route de Saint-Ivarel-d'Olt 48200 Fontbelade"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "partial",
+      "has_address": true
+    },
+    {
+      "text": "chaussures de running femme taille 39 imperméables",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "Bonjour, je suis Félix Renaud et je souhaite modifier l'adresse de livraison de ma prochaine commande. Merci d'avance.",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 17,
+          "end": 29,
+          "value": "Félix Renaud"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "full",
+      "has_address": false
+    },
+    {
+      "text": "quelle est la politique de remboursement en cas d'annulation ?",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "suivi colis Emeline Jean",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 12,
+          "end": 24,
+          "value": "Emeline Jean"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "full",
+      "has_address": false
+    },
+    {
+      "text": "colis 52 route de Lescalmes 48230 Rocheclare",
+      "entities": [
+        {
+          "entity": "ADDRESS",
+          "start": 6,
+          "end": 44,
+          "value": "52 route de Lescalmes 48230 Rocheclare"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "none",
+      "has_address": true
+    },
+    {
+      "text": "ou est ma commande Adèle Bertrand",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 19,
+          "end": 33,
+          "value": "Adèle Bertrand"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "full",
+      "has_address": false
+    },
+    {
+      "text": "suivi colis Hélène Roger",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 12,
+          "end": 24,
+          "value": "Hélène Roger"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "full",
+      "has_address": false
+    },
+    {
+      "text": "colis 57 place du Couvent 48100 Bellaudière",
+      "entities": [
+        {
+          "entity": "ADDRESS",
+          "start": 6,
+          "end": 43,
+          "value": "57 place du Couvent 48100 Bellaudière"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "none",
+      "has_address": true
+    },
+    {
+      "text": "Bonjour, je voudrais signaler un probleme de livraison a l'adresse 34 rue des Jardins 48220 La Bastide-Ferrandal. Le livreur n'a pas sonne. Merci.",
+      "entities": [
+        {
+          "entity": "ADDRESS",
+          "start": 67,
+          "end": 112,
+          "value": "34 rue des Jardins 48220 La Bastide-Ferrandal"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "none",
+      "has_address": true
+    },
+    {
+      "text": "Bonjour, pouvez-vous confirmer que la commande de Hugo Lacroix sera bien expediee cette semaine ? Le delai annonce etait de trois jours.",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 50,
+          "end": 62,
+          "value": "Hugo Lacroix"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "full",
+      "has_address": false
+    },
+    {
+      "text": "Bonjour, le colis adresse a Roméo Guillaume au 49 route de Combefraîche 48230 Peyrelongue-sur-Lot n'est jamais arrive. Que faut-il faire pour un remboursement ?",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 28,
+          "end": 43,
+          "value": "Roméo Guillaume"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 47,
+          "end": 97,
+          "value": "49 route de Combefraîche 48230 Peyrelongue-sur-Lot"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "chaussures de running femme taille 39 imperméables",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "suivi colis Enzo Lambert",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 12,
+          "end": 24,
+          "value": "Enzo Lambert"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "full",
+      "has_address": false
+    },
+    {
+      "text": "batterie externe 20000 mAh charge rapide USB-C",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "Bonjour, ma commande devait etre livree chez Tiphaine Renaud, 23 chemin de la Croix 48500 Brugeiroles, mais le colis est marque comme perdu. Merci de votre aide.",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 45,
+          "end": 60,
+          "value": "Tiphaine Renaud"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 62,
+          "end": 101,
+          "value": "23 chemin de la Croix 48500 Brugeiroles"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "comment activer une carte cadeau sur mon compte ?",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "Bonjour, ma commande devait etre livree chez Stéphane Dupuy, 12 rue du Four 48130 Saint-Ivarel-d'Olt, mais le colis est marque comme perdu. Merci de votre aide.",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 45,
+          "end": 59,
+          "value": "Stéphane Dupuy"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 61,
+          "end": 100,
+          "value": "12 rue du Four 48130 Saint-Ivarel-d'Olt"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "retour produit M. Marie 25 chemin de Castelvérine 48400 Chanteval-le-Haut",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 15,
+          "end": 23,
+          "value": "M. Marie"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 24,
+          "end": 73,
+          "value": "25 chemin de Castelvérine 48400 Chanteval-le-Haut"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "partial",
+      "has_address": true
+    },
+    {
+      "text": "Bonjour, je voudrais signaler un probleme de livraison a l'adresse 51 route de Fontbelade 48170 Le Puech-Varel. Le livreur n'a pas sonne. Merci.",
+      "entities": [
+        {
+          "entity": "ADDRESS",
+          "start": 67,
+          "end": 110,
+          "value": "51 route de Fontbelade 48170 Le Puech-Varel"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "none",
+      "has_address": true
+    },
+    {
+      "text": "retour produit Johanna Klein 27 chemin des Genêts 48170 Mazelbrune",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 15,
+          "end": 28,
+          "value": "Johanna Klein"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 29,
+          "end": 66,
+          "value": "27 chemin des Genêts 48170 Mazelbrune"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "Bonjour, le colis adresse a Louise Guillaume au 45 rue de la Forge 48000 Saint-Ivarel-d'Olt n'est jamais arrive. Que faut-il faire pour un remboursement ?",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 28,
+          "end": 44,
+          "value": "Louise Guillaume"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 48,
+          "end": 91,
+          "value": "45 rue de la Forge 48000 Saint-Ivarel-d'Olt"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "L. Martinez 18 route des Vernhettes-Hautes 48220 Peyrelongue-sur-Lot",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 0,
+          "end": 11,
+          "value": "L. Martinez"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 12,
+          "end": 68,
+          "value": "18 route des Vernhettes-Hautes 48220 Peyrelongue-sur-Lot"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "partial",
+      "has_address": true
+    },
+    {
+      "text": "Bonjour, le colis adresse a Tatiana Marie au 45 rue des Jardins 48310 Le Puech-Varel n'est jamais arrive. Que faut-il faire pour un remboursement ?",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 28,
+          "end": 41,
+          "value": "Tatiana Marie"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 45,
+          "end": 84,
+          "value": "45 rue des Jardins 48310 Le Puech-Varel"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "Bonjour, le colis adresse a P. Roux au 56 rue du Lavoir 48340 Rocheclare n'est jamais arrive. Que faut-il faire pour un remboursement ?",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 28,
+          "end": 35,
+          "value": "P. Roux"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 39,
+          "end": 72,
+          "value": "56 rue du Lavoir 48340 Rocheclare"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "partial",
+      "has_address": true
+    },
+    {
+      "text": "Bonjour, je suis M. Benoit et je souhaite modifier l'adresse de livraison de ma prochaine commande. Merci d'avance.",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 17,
+          "end": 26,
+          "value": "M. Benoit"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "partial",
+      "has_address": false
+    },
+    {
+      "text": "colis 45 route de Lescalmes 48310 Peyrelongue-sur-Lot",
+      "entities": [
+        {
+          "entity": "ADDRESS",
+          "start": 6,
+          "end": 53,
+          "value": "45 route de Lescalmes 48310 Peyrelongue-sur-Lot"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "none",
+      "has_address": true
+    },
+    {
+      "text": "Bonjour, je m'appelle Emy Thomas. Je n'ai pas recu ma commande livree au 41 rue des Prés 48230 Chanteval-le-Haut. Pouvez-vous verifier le suivi ?",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 22,
+          "end": 32,
+          "value": "Emy Thomas"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 73,
+          "end": 112,
+          "value": "41 rue des Prés 48230 Chanteval-le-Haut"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "colis 11 rue du Moulin 48250 Malescombe",
+      "entities": [
+        {
+          "entity": "ADDRESS",
+          "start": 6,
+          "end": 39,
+          "value": "11 rue du Moulin 48250 Malescombe"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "none",
+      "has_address": true
+    },
+    {
+      "text": "Bonjour, je m'appelle M. Dumas. Je n'ai pas recu ma commande livree au 47 rue de la Calade 48170 Le Mas-Fouillade. Pouvez-vous verifier le suivi ?",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 22,
+          "end": 30,
+          "value": "M. Dumas"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 71,
+          "end": 113,
+          "value": "47 rue de la Calade 48170 Le Mas-Fouillade"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "partial",
+      "has_address": true
+    },
+    {
+      "text": "jouets éducatifs pour enfant de trois ans en bois",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "Bonjour, pouvez-vous confirmer que la commande de M. Gerard sera bien expediee cette semaine ? Le delai annonce etait de trois jours.",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 50,
+          "end": 59,
+          "value": "M. Gerard"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "partial",
+      "has_address": false
+    },
+    {
+      "text": "facture Ludovic Durand adresse 51 route de la Bastide-Ferrandal 48190 Rocheclare",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 8,
+          "end": 22,
+          "value": "Ludovic Durand"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 31,
+          "end": 80,
+          "value": "51 route de la Bastide-Ferrandal 48190 Rocheclare"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "suivi colis Mme Arnaud",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 12,
+          "end": 22,
+          "value": "Mme Arnaud"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "partial",
+      "has_address": false
+    },
+    {
+      "text": "Bonjour, ma commande devait etre livree chez Mlle Henry, 23 chemin de Peyrelongue-sur-Lot 48300 Sainte-Ondine-du-Causse, mais le colis est marque comme perdu. Merci de votre aide.",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 45,
+          "end": 55,
+          "value": "Mlle Henry"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 57,
+          "end": 119,
+          "value": "23 chemin de Peyrelongue-sur-Lot 48300 Sainte-Ondine-du-Causse"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "partial",
+      "has_address": true
+    },
+    {
+      "text": "Bonjour, pouvez-vous confirmer que la commande de Mme Lefebvre sera bien expediee cette semaine ? Le delai annonce etait de trois jours.",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 50,
+          "end": 62,
+          "value": "Mme Lefebvre"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "partial",
+      "has_address": false
+    },
+    {
+      "text": "Bonjour, je m'appelle Franck Leroux. Je n'ai pas recu ma commande livree au 33 route des Vernhettes-Hautes 48400 Font-Romeyre. Pouvez-vous verifier le suivi ?",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 22,
+          "end": 35,
+          "value": "Franck Leroux"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 76,
+          "end": 125,
+          "value": "33 route des Vernhettes-Hautes 48400 Font-Romeyre"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "robe d'été fleurie coton taille M pas chère",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "Bonjour, je voudrais signaler un probleme de livraison a l'adresse 14 place du Couvent 48220 Le Mas-Fouillade. Le livreur n'a pas sonne. Merci.",
+      "entities": [
+        {
+          "entity": "ADDRESS",
+          "start": 67,
+          "end": 109,
+          "value": "14 place du Couvent 48220 Le Mas-Fouillade"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "none",
+      "has_address": true
+    },
+    {
+      "text": "facture Lenny Rolland adresse 22 rue du Pont 48310 Les Vernhettes-Hautes",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 8,
+          "end": 21,
+          "value": "Lenny Rolland"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 30,
+          "end": 72,
+          "value": "22 rue du Pont 48310 Les Vernhettes-Hautes"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "colis 8 rue des Prés 48190 Font-Romeyre",
+      "entities": [
+        {
+          "entity": "ADDRESS",
+          "start": 6,
+          "end": 39,
+          "value": "8 rue des Prés 48190 Font-Romeyre"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "none",
+      "has_address": true
+    },
+    {
+      "text": "Bonjour, le colis adresse a Mme Pierre au 7 place du Pont 48190 Lescalmes n'est jamais arrive. Que faut-il faire pour un remboursement ?",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 28,
+          "end": 38,
+          "value": "Mme Pierre"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 42,
+          "end": 73,
+          "value": "7 place du Pont 48190 Lescalmes"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "partial",
+      "has_address": true
+    },
+    {
+      "text": "table basse en bois massif style scandinave",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "livraison Magalie Simon 43 rue du Four 48170 Rocheclare",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 10,
+          "end": 23,
+          "value": "Magalie Simon"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 24,
+          "end": 55,
+          "value": "43 rue du Four 48170 Rocheclare"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "cafetière expresso automatique avec broyeur intégré",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "quelle est la politique de remboursement en cas d'annulation ?",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "comment retourner un article qui ne convient pas ?",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "commande Alix Lemoine",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 9,
+          "end": 21,
+          "value": "Alix Lemoine"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "full",
+      "has_address": false
+    },
+    {
+      "text": "Bonjour, ma commande devait etre livree chez Louisa Guillaume, 59 place de la Tour 48230 Saint-Orvald, mais le colis est marque comme perdu. Merci de votre aide.",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 45,
+          "end": 61,
+          "value": "Louisa Guillaume"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 63,
+          "end": 101,
+          "value": "59 place de la Tour 48230 Saint-Orvald"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "vélo électrique pliable autonomie 60 km",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "sac à dos ordinateur portable 15 pouces étanche",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "jouets éducatifs pour enfant de trois ans en bois",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "Bonjour, ma commande devait etre livree chez Roxane Martinez, 38 rue de la Tour 48200 Font-Romeyre, mais le colis est marque comme perdu. Merci de votre aide.",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 45,
+          "end": 60,
+          "value": "Roxane Martinez"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 62,
+          "end": 98,
+          "value": "38 rue de la Tour 48200 Font-Romeyre"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "Bonjour, ma commande devait etre livree chez M. Lambert, 57 route de Chanteval-le-Haut 48400 Sainte-Ondine-du-Causse, mais le colis est marque comme perdu. Merci de votre aide.",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 45,
+          "end": 55,
+          "value": "M. Lambert"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 57,
+          "end": 116,
+          "value": "57 route de Chanteval-le-Haut 48400 Sainte-Ondine-du-Causse"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "partial",
+      "has_address": true
+    },
+    {
+      "text": "peut-on suivre un colis sans numéro de suivi ?",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "Bonjour, le colis adresse a U. Moreau au 5 rue de la Tour 48230 Mazelbrune n'est jamais arrive. Que faut-il faire pour un remboursement ?",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 28,
+          "end": 37,
+          "value": "U. Moreau"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 41,
+          "end": 74,
+          "value": "5 rue de la Tour 48230 Mazelbrune"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "partial",
+      "has_address": true
+    },
+    {
+      "text": "Bonjour, ma commande devait etre livree chez Carine Marchand, 22 route de Rocheclare 48400 Saint-Orvald, mais le colis est marque comme perdu. Merci de votre aide.",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 45,
+          "end": 60,
+          "value": "Carine Marchand"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 62,
+          "end": 103,
+          "value": "22 route de Rocheclare 48400 Saint-Orvald"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "Bonjour, je m'appelle F. Barbier. Je n'ai pas recu ma commande livree au 31 chemin de la Fontaine 48100 Saint-Aurel-de-Brousse. Pouvez-vous verifier le suivi ?",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 22,
+          "end": 32,
+          "value": "F. Barbier"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 73,
+          "end": 126,
+          "value": "31 chemin de la Fontaine 48100 Saint-Aurel-de-Brousse"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "partial",
+      "has_address": true
+    },
+    {
+      "text": "je cherche un manteau d'hiver homme en laine noir",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "Bonjour, pouvez-vous confirmer que la commande de Isaac Mercier sera bien expediee cette semaine ? Le delai annonce etait de trois jours.",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 50,
+          "end": 63,
+          "value": "Isaac Mercier"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "full",
+      "has_address": false
+    },
+    {
+      "text": "Bonjour, pouvez-vous confirmer que la commande de R. Masson sera bien expediee cette semaine ? Le delai annonce etait de trois jours.",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 50,
+          "end": 59,
+          "value": "R. Masson"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "partial",
+      "has_address": false
+    },
+    {
+      "text": "y a-t-il des frais de port pour une commande de plus de 50 euros ?",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "Bonjour, je suis Héloïse Philippe et je souhaite modifier l'adresse de livraison de ma prochaine commande. Merci d'avance.",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 17,
+          "end": 33,
+          "value": "Héloïse Philippe"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "full",
+      "has_address": false
+    },
+    {
+      "text": "Bonjour, pouvez-vous confirmer que la commande de M. Roussel sera bien expediee cette semaine ? Le delai annonce etait de trois jours.",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 50,
+          "end": 60,
+          "value": "M. Roussel"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "partial",
+      "has_address": false
+    },
+    {
+      "text": "table basse en bois massif style scandinave",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "Bonjour, je voudrais signaler un probleme de livraison a l'adresse 57 impasse des Jardins 48340 Aigueplane. Le livreur n'a pas sonne. Merci.",
+      "entities": [
+        {
+          "entity": "ADDRESS",
+          "start": 67,
+          "end": 106,
+          "value": "57 impasse des Jardins 48340 Aigueplane"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "none",
+      "has_address": true
+    },
+    {
+      "text": "livraison Vanessa Barbier 6 rue de l'Église 48310 Montaurès",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 10,
+          "end": 25,
+          "value": "Vanessa Barbier"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 26,
+          "end": 59,
+          "value": "6 rue de l'Église 48310 Montaurès"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "facture Yanis Andre adresse 56 chemin du Four 48190 Castelvérine",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 8,
+          "end": 19,
+          "value": "Yanis Andre"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 28,
+          "end": 64,
+          "value": "56 chemin du Four 48190 Castelvérine"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "robe d'été fleurie coton taille M pas chère",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "chaussures de sécurité antidérapantes semelle renforcée",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "cafetière expresso automatique avec broyeur intégré",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "Bonjour, je voudrais signaler un probleme de livraison a l'adresse 15 rue du Moulin 48170 Peyrelongue-sur-Lot. Le livreur n'a pas sonne. Merci.",
+      "entities": [
+        {
+          "entity": "ADDRESS",
+          "start": 67,
+          "end": 109,
+          "value": "15 rue du Moulin 48170 Peyrelongue-sur-Lot"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "none",
+      "has_address": true
+    },
+    {
+      "text": "Bonjour, ma commande devait etre livree chez Mehdi Chevalier, 42 chemin des Écoles 48170 Mazelbrune, mais le colis est marque comme perdu. Merci de votre aide.",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 45,
+          "end": 60,
+          "value": "Mehdi Chevalier"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 62,
+          "end": 99,
+          "value": "42 chemin des Écoles 48170 Mazelbrune"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "sac à dos ordinateur portable 15 pouces étanche",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "Bonjour, je voudrais signaler un probleme de livraison a l'adresse 1 rue du Pont 48200 Malescombe. Le livreur n'a pas sonne. Merci.",
+      "entities": [
+        {
+          "entity": "ADDRESS",
+          "start": 67,
+          "end": 97,
+          "value": "1 rue du Pont 48200 Malescombe"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "none",
+      "has_address": true
+    },
+    {
+      "text": "quel est le délai de livraison standard pour la métropole ?",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "ou est ma commande E. Bonnet",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 19,
+          "end": 28,
+          "value": "E. Bonnet"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "partial",
+      "has_address": false
+    },
+    {
+      "text": "Christelle Martin 11 chemin des Prés 48200 Prat-de-Lunel",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 0,
+          "end": 17,
+          "value": "Christelle Martin"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 18,
+          "end": 56,
+          "value": "11 chemin des Prés 48200 Prat-de-Lunel"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "lampe de bureau LED réglable lumière chaude",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "retour produit Basile Garnier 40 rue du Four 48190 Lescalmes",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 15,
+          "end": 29,
+          "value": "Basile Garnier"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 30,
+          "end": 60,
+          "value": "40 rue du Four 48190 Lescalmes"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "Bonjour, le colis adresse a Sandrine Noel au 11 avenue de la Calade 48250 Valcombre n'est jamais arrive. Que faut-il faire pour un remboursement ?",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 28,
+          "end": 41,
+          "value": "Sandrine Noel"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 45,
+          "end": 83,
+          "value": "11 avenue de la Calade 48250 Valcombre"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "M. Andre 21 chemin du Moulin 48200 Font-Romeyre",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 0,
+          "end": 8,
+          "value": "M. Andre"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 9,
+          "end": 47,
+          "value": "21 chemin du Moulin 48200 Font-Romeyre"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "partial",
+      "has_address": true
+    },
+    {
+      "text": "quels sont les horaires du service client le week-end ?",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "quel est le délai de livraison standard pour la métropole ?",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "Bonjour, ma commande devait etre livree chez S. Morel, 44 rue de la Tour 48100 Les Vernhettes-Hautes, mais le colis est marque comme perdu. Merci de votre aide.",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 45,
+          "end": 53,
+          "value": "S. Morel"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 55,
+          "end": 100,
+          "value": "44 rue de la Tour 48100 Les Vernhettes-Hautes"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "partial",
+      "has_address": true
+    },
+    {
+      "text": "Audrey Leroy 34 route de Brugeiroles 48310 Bellaudière",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 0,
+          "end": 12,
+          "value": "Audrey Leroy"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 13,
+          "end": 54,
+          "value": "34 route de Brugeiroles 48310 Bellaudière"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "livraison Andréa Meyer 30 rue de l'Église 48220 Prat-de-Lunel",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 10,
+          "end": 22,
+          "value": "Andréa Meyer"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 23,
+          "end": 61,
+          "value": "30 rue de l'Église 48220 Prat-de-Lunel"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "Bonjour, je m'appelle Mlle Perez. Je n'ai pas recu ma commande livree au 50 route de Bellaudière 48150 Lescalmes. Pouvez-vous verifier le suivi ?",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 22,
+          "end": 32,
+          "value": "Mlle Perez"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 73,
+          "end": 112,
+          "value": "50 route de Bellaudière 48150 Lescalmes"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "partial",
+      "has_address": true
+    },
+    {
+      "text": "puis-je changer le mode de livraison après la commande ?",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "suivi colis Basile Lambert",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 12,
+          "end": 26,
+          "value": "Basile Lambert"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "full",
+      "has_address": false
+    },
+    {
+      "text": "existe-t-il une garantie sur les produits électroménagers ?",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "Bonjour, je m'appelle C. Legrand. Je n'ai pas recu ma commande livree au 14 impasse de l'Église 48300 Aigueplane. Pouvez-vous verifier le suivi ?",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 22,
+          "end": 32,
+          "value": "C. Legrand"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 73,
+          "end": 112,
+          "value": "14 impasse de l'Église 48300 Aigueplane"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "partial",
+      "has_address": true
+    },
+    {
+      "text": "Bonjour, je m'appelle M. Gautier. Je n'ai pas recu ma commande livree au 27 rue de la Forge 48230 Combefraîche. Pouvez-vous verifier le suivi ?",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 22,
+          "end": 32,
+          "value": "M. Gautier"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 73,
+          "end": 110,
+          "value": "27 rue de la Forge 48230 Combefraîche"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "partial",
+      "has_address": true
+    },
+    {
+      "text": "livraison Adem Brun 12 rue du Moulin 48400 Vialarède",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 10,
+          "end": 19,
+          "value": "Adem Brun"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 20,
+          "end": 52,
+          "value": "12 rue du Moulin 48400 Vialarède"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "Bonjour, le colis adresse a Karine Moulin au 49 place du Moulin 48170 Peyrelongue-sur-Lot n'est jamais arrive. Que faut-il faire pour un remboursement ?",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 28,
+          "end": 41,
+          "value": "Karine Moulin"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 45,
+          "end": 89,
+          "value": "49 place du Moulin 48170 Peyrelongue-sur-Lot"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "Bonjour, je voudrais signaler un probleme de livraison a l'adresse 39 route de Saint-Ivarel-d'Olt 48500 Malescombe. Le livreur n'a pas sonne. Merci.",
+      "entities": [
+        {
+          "entity": "ADDRESS",
+          "start": 67,
+          "end": 114,
+          "value": "39 route de Saint-Ivarel-d'Olt 48500 Malescombe"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "none",
+      "has_address": true
+    },
+    {
+      "text": "Bonjour, ma commande devait etre livree chez Mlle Legrand, 41 impasse de la Calade 48400 Saint-Ivarel-d'Olt, mais le colis est marque comme perdu. Merci de votre aide.",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 45,
+          "end": 57,
+          "value": "Mlle Legrand"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 59,
+          "end": 107,
+          "value": "41 impasse de la Calade 48400 Saint-Ivarel-d'Olt"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "partial",
+      "has_address": true
+    },
+    {
+      "text": "Bonjour, le colis adresse a L. Gaillard au 13 chemin de Fontbelade 48300 Prat-de-Lunel n'est jamais arrive. Que faut-il faire pour un remboursement ?",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 28,
+          "end": 39,
+          "value": "L. Gaillard"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 43,
+          "end": 86,
+          "value": "13 chemin de Fontbelade 48300 Prat-de-Lunel"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "partial",
+      "has_address": true
+    },
+    {
+      "text": "vélo électrique pliable autonomie 60 km",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "y a-t-il des frais de port pour une commande de plus de 50 euros ?",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "Bonjour, le colis adresse a François Renard au 33 route de Sainte-Ondine-du-Causse 48310 Chanteval-le-Haut n'est jamais arrive. Que faut-il faire pour un remboursement ?",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 28,
+          "end": 43,
+          "value": "François Renard"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 47,
+          "end": 106,
+          "value": "33 route de Sainte-Ondine-du-Causse 48310 Chanteval-le-Haut"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "Bonjour, je suis Mme Faure et je souhaite modifier l'adresse de livraison de ma prochaine commande. Merci d'avance.",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 17,
+          "end": 26,
+          "value": "Mme Faure"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "partial",
+      "has_address": false
+    },
+    {
+      "text": "Bonjour, je m'appelle Jessy Boyer. Je n'ai pas recu ma commande livree au 14 place de la Tour 48100 Castelvérine. Pouvez-vous verifier le suivi ?",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 22,
+          "end": 33,
+          "value": "Jessy Boyer"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 74,
+          "end": 112,
+          "value": "14 place de la Tour 48100 Castelvérine"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "vélo électrique pliable autonomie 60 km",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "Bonjour, je suis Pascal Lemaire et je souhaite modifier l'adresse de livraison de ma prochaine commande. Merci d'avance.",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 17,
+          "end": 31,
+          "value": "Pascal Lemaire"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "full",
+      "has_address": false
+    },
+    {
+      "text": "Bonjour, le colis adresse a Augustin Meunier au 58 route de Valcombre 48000 Peyrelongue-sur-Lot n'est jamais arrive. Que faut-il faire pour un remboursement ?",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 28,
+          "end": 44,
+          "value": "Augustin Meunier"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 48,
+          "end": 95,
+          "value": "58 route de Valcombre 48000 Peyrelongue-sur-Lot"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "ma commande est en retard, quel est le délai habituel de traitement ?",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "colis 19 impasse de la Calade 48190 Castelvérine",
+      "entities": [
+        {
+          "entity": "ADDRESS",
+          "start": 6,
+          "end": 48,
+          "value": "19 impasse de la Calade 48190 Castelvérine"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "none",
+      "has_address": true
+    },
+    {
+      "text": "ou est ma commande Charlie Roux",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 19,
+          "end": 31,
+          "value": "Charlie Roux"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "full",
+      "has_address": false
+    },
+    {
+      "text": "livraison Sylvain Bourgeois 28 rue des Prés 48150 Lescalmes",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 10,
+          "end": 27,
+          "value": "Sylvain Bourgeois"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 28,
+          "end": 59,
+          "value": "28 rue des Prés 48150 Lescalmes"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "casque audio sans fil bluetooth réduction de bruit",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "Bonjour, le colis adresse a E. Garnier au 12 rue du Couvent 48310 Aigueplane n'est jamais arrive. Que faut-il faire pour un remboursement ?",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 28,
+          "end": 38,
+          "value": "E. Garnier"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 42,
+          "end": 76,
+          "value": "12 rue du Couvent 48310 Aigueplane"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "partial",
+      "has_address": true
+    },
+    {
+      "text": "existe-t-il une garantie sur les produits électroménagers ?",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "Bonjour, je m'appelle Bérénice Blanc. Je n'ai pas recu ma commande livree au 15 impasse des Genêts 48150 Les Vernhettes-Hautes. Pouvez-vous verifier le suivi ?",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 22,
+          "end": 36,
+          "value": "Bérénice Blanc"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 77,
+          "end": 126,
+          "value": "15 impasse des Genêts 48150 Les Vernhettes-Hautes"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "facture Mme Fleury adresse 1 route du Mas-Fouillade 48340 Rocheclare",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 8,
+          "end": 18,
+          "value": "Mme Fleury"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 27,
+          "end": 68,
+          "value": "1 route du Mas-Fouillade 48340 Rocheclare"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "partial",
+      "has_address": true
+    },
+    {
+      "text": "colis 59 route de Rocheclare 48300 Montaurès",
+      "entities": [
+        {
+          "entity": "ADDRESS",
+          "start": 6,
+          "end": 44,
+          "value": "59 route de Rocheclare 48300 Montaurès"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "none",
+      "has_address": true
+    },
+    {
+      "text": "Bonjour, je m'appelle Johann Francois. Je n'ai pas recu ma commande livree au 11 impasse de la Calade 48110 Le Mas-Fouillade. Pouvez-vous verifier le suivi ?",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 22,
+          "end": 37,
+          "value": "Johann Francois"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 78,
+          "end": 124,
+          "value": "11 impasse de la Calade 48110 Le Mas-Fouillade"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "ou est ma commande M. Klein",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 19,
+          "end": 27,
+          "value": "M. Klein"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "partial",
+      "has_address": false
+    },
+    {
+      "text": "suivi colis Anna Marie",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 12,
+          "end": 22,
+          "value": "Anna Marie"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "full",
+      "has_address": false
+    },
+    {
+      "text": "comment retourner un article qui ne convient pas ?",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "comment activer une carte cadeau sur mon compte ?",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "Bonjour, pouvez-vous confirmer que la commande de Samir Dupuy sera bien expediee cette semaine ? Le delai annonce etait de trois jours.",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 50,
+          "end": 61,
+          "value": "Samir Dupuy"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "full",
+      "has_address": false
+    },
+    {
+      "text": "commande Jean Duval",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 9,
+          "end": 19,
+          "value": "Jean Duval"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "full",
+      "has_address": false
+    },
+    {
+      "text": "Bonjour, je voudrais signaler un probleme de livraison a l'adresse 28 rue des Jardins 48190 Peyrelongue-sur-Lot. Le livreur n'a pas sonne. Merci.",
+      "entities": [
+        {
+          "entity": "ADDRESS",
+          "start": 67,
+          "end": 111,
+          "value": "28 rue des Jardins 48190 Peyrelongue-sur-Lot"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "none",
+      "has_address": true
+    },
+    {
+      "text": "Bonjour, le colis adresse a Lyna Lefevre au 37 rue du Lavoir 48150 Le Mas-Fouillade n'est jamais arrive. Que faut-il faire pour un remboursement ?",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 28,
+          "end": 40,
+          "value": "Lyna Lefevre"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 44,
+          "end": 83,
+          "value": "37 rue du Lavoir 48150 Le Mas-Fouillade"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "retour produit Lyam Henry 25 rue de la Croix 48400 Malescombe",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 15,
+          "end": 25,
+          "value": "Lyam Henry"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 26,
+          "end": 61,
+          "value": "25 rue de la Croix 48400 Malescombe"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "Bonjour, je m'appelle F. Martinez. Je n'ai pas recu ma commande livree au 3 rue des Prés 48100 Les Vernhettes-Hautes. Pouvez-vous verifier le suivi ?",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 22,
+          "end": 33,
+          "value": "F. Martinez"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 74,
+          "end": 116,
+          "value": "3 rue des Prés 48100 Les Vernhettes-Hautes"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "partial",
+      "has_address": true
+    },
+    {
+      "text": "Bonjour, pouvez-vous confirmer que la commande de Charlotte Lemoine sera bien expediee cette semaine ? Le delai annonce etait de trois jours.",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 50,
+          "end": 67,
+          "value": "Charlotte Lemoine"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "full",
+      "has_address": false
+    },
+    {
+      "text": "Bonjour, pouvez-vous confirmer que la commande de Laure Marchand sera bien expediee cette semaine ? Le delai annonce etait de trois jours.",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 50,
+          "end": 64,
+          "value": "Laure Marchand"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "full",
+      "has_address": false
+    },
+    {
+      "text": "livraison Sandra Schmitt 5 chemin du Couvent 48170 Fontbelade",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 10,
+          "end": 24,
+          "value": "Sandra Schmitt"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 25,
+          "end": 61,
+          "value": "5 chemin du Couvent 48170 Fontbelade"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "suivi colis Natacha Martin",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 12,
+          "end": 26,
+          "value": "Natacha Martin"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "full",
+      "has_address": false
+    },
+    {
+      "text": "casque audio sans fil bluetooth réduction de bruit",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "S. Lopez 52 chemin des Écoles 48400 Montaurès",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 0,
+          "end": 8,
+          "value": "S. Lopez"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 9,
+          "end": 45,
+          "value": "52 chemin des Écoles 48400 Montaurès"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "partial",
+      "has_address": true
+    },
+    {
+      "text": "facture Mlle Lacroix adresse 48 rue du Four 48110 Aigueplane",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 8,
+          "end": 20,
+          "value": "Mlle Lacroix"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 29,
+          "end": 60,
+          "value": "48 rue du Four 48110 Aigueplane"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "partial",
+      "has_address": true
+    },
+    {
+      "text": "facture Clément Huet adresse 44 impasse du Couvent 48250 Combefraîche",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 8,
+          "end": 20,
+          "value": "Clément Huet"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 29,
+          "end": 69,
+          "value": "44 impasse du Couvent 48250 Combefraîche"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "Bonjour, le colis adresse a Roxane Noel au 57 chemin de Bellaudière 48110 Malescombe n'est jamais arrive. Que faut-il faire pour un remboursement ?",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 28,
+          "end": 39,
+          "value": "Roxane Noel"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 43,
+          "end": 84,
+          "value": "57 chemin de Bellaudière 48110 Malescombe"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "Bonjour, je m'appelle Morgan Fleury. Je n'ai pas recu ma commande livree au 1 impasse des Écoles 48220 Brugeiroles. Pouvez-vous verifier le suivi ?",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 22,
+          "end": 35,
+          "value": "Morgan Fleury"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 76,
+          "end": 114,
+          "value": "1 impasse des Écoles 48220 Brugeiroles"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "quelles sont les modalités de paiement en plusieurs fois ?",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "Bonjour, pouvez-vous confirmer que la commande de Maxence Vidal sera bien expediee cette semaine ? Le delai annonce etait de trois jours.",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 50,
+          "end": 63,
+          "value": "Maxence Vidal"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "full",
+      "has_address": false
+    },
+    {
+      "text": "colis 50 route de Brugeiroles 48310 La Bastide-Ferrandal",
+      "entities": [
+        {
+          "entity": "ADDRESS",
+          "start": 6,
+          "end": 56,
+          "value": "50 route de Brugeiroles 48310 La Bastide-Ferrandal"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "none",
+      "has_address": true
+    },
+    {
+      "text": "ou est ma commande Eloise Bonnet",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 19,
+          "end": 32,
+          "value": "Eloise Bonnet"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "full",
+      "has_address": false
+    },
+    {
+      "text": "Bonjour, je suis M. Leroux et je souhaite modifier l'adresse de livraison de ma prochaine commande. Merci d'avance.",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 17,
+          "end": 26,
+          "value": "M. Leroux"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "partial",
+      "has_address": false
+    },
+    {
+      "text": "ma commande est en retard, quel est le délai habituel de traitement ?",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "Bonjour, le colis adresse a Alix Barbier au 34 route de Montaurès 48150 Font-Romeyre n'est jamais arrive. Que faut-il faire pour un remboursement ?",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 28,
+          "end": 40,
+          "value": "Alix Barbier"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 44,
+          "end": 84,
+          "value": "34 route de Montaurès 48150 Font-Romeyre"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "Bonjour, le colis adresse a Amélie Arnaud au 13 place des Prés 48150 Valcombre n'est jamais arrive. Que faut-il faire pour un remboursement ?",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 28,
+          "end": 41,
+          "value": "Amélie Arnaud"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 45,
+          "end": 78,
+          "value": "13 place des Prés 48150 Valcombre"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "Bonjour, pouvez-vous confirmer que la commande de C. Morin sera bien expediee cette semaine ? Le delai annonce etait de trois jours.",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 50,
+          "end": 58,
+          "value": "C. Morin"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "partial",
+      "has_address": false
+    },
+    {
+      "text": "Mme Rey 45 route de Font-Romeyre 48150 Castelvérine",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 0,
+          "end": 7,
+          "value": "Mme Rey"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 8,
+          "end": 51,
+          "value": "45 route de Font-Romeyre 48150 Castelvérine"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "partial",
+      "has_address": true
+    },
+    {
+      "text": "batterie externe 20000 mAh charge rapide USB-C",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "lampe de bureau LED réglable lumière chaude",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "Bonjour, je m'appelle A. Perez. Je n'ai pas recu ma commande livree au 16 route des Vernhettes-Hautes 48130 Brugeiroles. Pouvez-vous verifier le suivi ?",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 22,
+          "end": 30,
+          "value": "A. Perez"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 71,
+          "end": 119,
+          "value": "16 route des Vernhettes-Hautes 48130 Brugeiroles"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "partial",
+      "has_address": true
+    },
+    {
+      "text": "retour produit Mme Durand 41 chemin du Puech-Varel 48110 Brugeiroles",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 15,
+          "end": 25,
+          "value": "Mme Durand"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 26,
+          "end": 68,
+          "value": "41 chemin du Puech-Varel 48110 Brugeiroles"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "partial",
+      "has_address": true
+    },
+    {
+      "text": "Bonjour, ma commande devait etre livree chez Louisa Bertrand, 57 rue de la Tour 48230 Le Puech-Varel, mais le colis est marque comme perdu. Merci de votre aide.",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 45,
+          "end": 60,
+          "value": "Louisa Bertrand"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 62,
+          "end": 100,
+          "value": "57 rue de la Tour 48230 Le Puech-Varel"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "Mlle Gauthier 3 rue des Genêts 48100 Rocheclare",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 0,
+          "end": 13,
+          "value": "Mlle Gauthier"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 14,
+          "end": 47,
+          "value": "3 rue des Genêts 48100 Rocheclare"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "partial",
+      "has_address": true
+    },
+    {
+      "text": "commande Nolan Klein",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 9,
+          "end": 20,
+          "value": "Nolan Klein"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "full",
+      "has_address": false
+    },
+    {
+      "text": "je cherche un manteau d'hiver homme en laine noir",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "suivi colis S. Lemoine",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 12,
+          "end": 22,
+          "value": "S. Lemoine"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "partial",
+      "has_address": false
+    },
+    {
+      "text": "quelles sont les modalités de paiement en plusieurs fois ?",
+      "entities": [],
+      "template_kind": "negative",
+      "person_form": "none",
+      "has_address": false
+    },
+    {
+      "text": "livraison Céline Roussel 26 place des Genêts 48300 Prat-de-Lunel",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 10,
+          "end": 24,
+          "value": "Céline Roussel"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 25,
+          "end": 64,
+          "value": "26 place des Genêts 48300 Prat-de-Lunel"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "full",
+      "has_address": true
+    },
+    {
+      "text": "Bonjour, pouvez-vous confirmer que la commande de Marion Renaud sera bien expediee cette semaine ? Le delai annonce etait de trois jours.",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 50,
+          "end": 63,
+          "value": "Marion Renaud"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "full",
+      "has_address": false
+    },
+    {
+      "text": "Bonjour, le colis adresse a L. Blanc au 39 rue du Four 48220 Aigueplane n'est jamais arrive. Que faut-il faire pour un remboursement ?",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 28,
+          "end": 36,
+          "value": "L. Blanc"
+        },
+        {
+          "entity": "ADDRESS",
+          "start": 40,
+          "end": 71,
+          "value": "39 rue du Four 48220 Aigueplane"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "partial",
+      "has_address": true
+    },
+    {
+      "text": "colis 39 chemin du Couvent 48400 Saint-Aurel-de-Brousse",
+      "entities": [
+        {
+          "entity": "ADDRESS",
+          "start": 6,
+          "end": 55,
+          "value": "39 chemin du Couvent 48400 Saint-Aurel-de-Brousse"
+        }
+      ],
+      "template_kind": "search",
+      "person_form": "none",
+      "has_address": true
+    },
+    {
+      "text": "Bonjour, pouvez-vous confirmer que la commande de Younes Riviere sera bien expediee cette semaine ? Le delai annonce etait de trois jours.",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 50,
+          "end": 64,
+          "value": "Younes Riviere"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "full",
+      "has_address": false
+    },
+    {
+      "text": "Bonjour, pouvez-vous confirmer que la commande de Cyrielle Bernard sera bien expediee cette semaine ? Le delai annonce etait de trois jours.",
+      "entities": [
+        {
+          "entity": "PERSON",
+          "start": 50,
+          "end": 66,
+          "value": "Cyrielle Bernard"
+        }
+      ],
+      "template_kind": "support",
+      "person_form": "full",
+      "has_address": false
+    }
+  ]
+}

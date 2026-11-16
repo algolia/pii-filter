@@ -1,0 +1,44 @@
+{"text": "Numéro fiscal : 0000000001001", "entities": [{"type": "FR_TAX_ID", "start": 16, "end": 29, "value": "0000000001001"}]}
+{"text": "N° fiscal 00 00 000 002 002", "entities": [{"type": "FR_TAX_ID", "start": 10, "end": 27, "value": "00 00 000 002 002"}]}
+{"text": "SPI 0000000003003 (déclarant 1)", "entities": [{"type": "FR_TAX_ID", "start": 4, "end": 17, "value": "0000000003003"}]}
+{"text": "numero fiscal de reference 00.00.000.004.004", "entities": [{"type": "FR_TAX_ID", "start": 27, "end": 44, "value": "00.00.000.004.004"}]}
+{"text": "Tax ID 0000000005005", "entities": [{"type": "FR_TAX_ID", "start": 7, "end": 20, "value": "0000000005005"}]}
+{"text": "Identifiant fiscal : 00 00 000 006 006.", "entities": [{"type": "FR_TAX_ID", "start": 21, "end": 38, "value": "00 00 000 006 006"}]}
+{"text": "Votre numéro fiscal (0000000007007) figure en haut de l'avis.", "entities": [{"type": "FR_TAX_ID", "start": 21, "end": 34, "value": "0000000007007"}]}
+{"text": "00.00.000.008.008 est le numéro fiscal du foyer.", "entities": [{"type": "FR_TAX_ID", "start": 0, "end": 17, "value": "00.00.000.008.008"}]}
+{"text": "Déclarant : 0000000009009", "entities": [{"type": "FR_TAX_ID", "start": 12, "end": 25, "value": "0000000009009"}]}
+{"text": "Référence 00 00 000 010 010 à rappeler.", "entities": [{"type": "FR_TAX_ID", "start": 10, "end": 27, "value": "00 00 000 010 010"}]}
+{"text": "Numéro fiscal : 0000000011011", "entities": [{"type": "FR_TAX_ID", "start": 16, "end": 29, "value": "0000000011011"}]}
+{"text": "N° fiscal 00.00.000.012.012", "entities": [{"type": "FR_TAX_ID", "start": 10, "end": 27, "value": "00.00.000.012.012"}]}
+{"text": "SPI 0000000013013 (déclarant 1)", "entities": [{"type": "FR_TAX_ID", "start": 4, "end": 17, "value": "0000000013013"}]}
+{"text": "numero fiscal de reference 00 00 000 014 014", "entities": [{"type": "FR_TAX_ID", "start": 27, "end": 44, "value": "00 00 000 014 014"}]}
+{"text": "Tax ID 0000000015015", "entities": [{"type": "FR_TAX_ID", "start": 7, "end": 20, "value": "0000000015015"}]}
+{"text": "Identifiant fiscal : 00.00.000.016.016.", "entities": [{"type": "FR_TAX_ID", "start": 21, "end": 38, "value": "00.00.000.016.016"}]}
+{"text": "Votre numéro fiscal (0000000017017) figure en haut de l'avis.", "entities": [{"type": "FR_TAX_ID", "start": 21, "end": 34, "value": "0000000017017"}]}
+{"text": "00 00 000 018 018 est le numéro fiscal du foyer.", "entities": [{"type": "FR_TAX_ID", "start": 0, "end": 17, "value": "00 00 000 018 018"}]}
+{"text": "Déclarant : 0000000019019", "entities": [{"type": "FR_TAX_ID", "start": 12, "end": 25, "value": "0000000019019"}]}
+{"text": "Référence 00.00.000.020.020 à rappeler.", "entities": [{"type": "FR_TAX_ID", "start": 10, "end": 27, "value": "00.00.000.020.020"}]}
+{"text": "Numéro fiscal : 0000000021021", "entities": [{"type": "FR_TAX_ID", "start": 16, "end": 29, "value": "0000000021021"}]}
+{"text": "N° fiscal 00 00 000 022 022", "entities": [{"type": "FR_TAX_ID", "start": 10, "end": 27, "value": "00 00 000 022 022"}]}
+{"text": "SPI 0000000023023 (déclarant 1)", "entities": [{"type": "FR_TAX_ID", "start": 4, "end": 17, "value": "0000000023023"}]}
+{"text": "numero fiscal de reference 00.00.000.024.024", "entities": [{"type": "FR_TAX_ID", "start": 27, "end": 44, "value": "00.00.000.024.024"}]}
+{"text": "Numéro fiscal : 0000000025075", "entities": []}
+{"text": "N° fiscal 0000000026526", "entities": []}
+{"text": "SPI 0000000027007 (déclarant 1)", "entities": []}
+{"text": "numero fiscal de reference 0000000028328", "entities": []}
+{"text": "Tax ID 0000000029829", "entities": []}
+{"text": "Identifiant fiscal : 0000000030031.", "entities": []}
+{"text": "Votre numéro fiscal (0000000031431) figure en haut de l'avis.", "entities": []}
+{"text": "0000000032082 est le numéro fiscal du foyer.", "entities": []}
+{"text": "Déclarant : 0000000033003", "entities": []}
+{"text": "Référence 0000000034534 à rappeler.", "entities": []}
+{"text": "Code-barres EAN 3387066241040 au rayon frais.", "entities": []}
+{"text": "Code-barres EAN 3592924226637 au rayon frais.", "entities": []}
+{"text": "Code-barres EAN 3595748066243 au rayon frais.", "entities": []}
+{"text": "Code-barres EAN 3324022394709 au rayon frais.", "entities": []}
+{"text": "Code-barres EAN 3755148330669 au rayon frais.", "entities": []}
+{"text": "event timestamp=1742638311348 ms", "entities": []}
+{"text": "event timestamp=1771228061296 ms", "entities": []}
+{"text": "event timestamp=1704426947412 ms", "entities": []}
+{"text": "Commande 5388859903300 validée.", "entities": []}
+{"text": "Dossier 304165279868 (12 chiffres).", "entities": []}
