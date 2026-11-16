@@ -85,9 +85,9 @@ install.
 | Entity | Tier | Detection | Default policy |
 |---|---|---|---|
 | EMAIL | 1 | regex | redact |
-| PHONE | 1 | regex + digit-count, not-an-IP | redact |
-| CREDIT_CARD | 1 | regex + Luhn + IIN + length | reject |
-| IBAN | 1 | regex + mod-97 | reject |
+| PHONE | 1 | regex + digit-count, not-an-IP; grouped or compact E.164 | redact |
+| CREDIT_CARD | 1 | regex + Luhn + IIN + length, card windows inside longer runs | reject |
+| IBAN | 1 | regex + mod-97, compact or 4-char groups, any case | reject |
 | IP | 1 | regex + octet range | flag |
 | FR_NIR | 1 | regex + mod-97 key (Corsica 2A/2B) | redact |
 | FR_TAX_ID | 1 | regex + first digit 0-3, mod 511 | redact |
@@ -154,16 +154,18 @@ Tier-1 findings score `1.0`. Tier-2 findings carry the model's confidence.
 - **Not a compliance guarantee.** Regex + checksum is a high-precision tripwire
   for identifiers, not a proof a dataset is PII-free. The strongest control
   remains never ingesting personal data.
-- **Calibrated on a small, clean corpus** (n=323 examples, 182 spans). Span-level
+- **Calibrated on a small, clean corpus** (n=355 examples, 207 spans). Span-level
   precision/recall is `1.00` point estimate, `0.98` overall Wilson floor and
   `0.80`-`0.87` per national-ID entity (15-25 spans each). That is a tripwire demonstrated on
   curated data, not a field-accuracy claim. See the bench in [`../README.md`](../README.md).
 - **A valid checksum proves shape, not issuance.** Nothing here looks a number up,
   and the national-ID checks are weak (a random number of the right shape passes
   the NIR key 1 time in 100, the DNI letter 1 in 23).
-- **Python and Go agree on the corpus, not everywhere.** Known pre-existing
-  disagreements on CREDIT_CARD, PHONE and IP edge cases remain (about 124 per
-  20,000 fuzz strings, measured before 0.2.0).
+- **Python and Go agree on the corpus, not everywhere.** Cards and IBANs agree
+  on the fuzz runs; known pre-existing PHONE disagreements remain (about 20 per
+  20,000 random strings, more on strings built from digit groups and `+` signs).
+- **Compact national phone numbers are not detected** (`0` plus 9-10 digits, no
+  separator): about 9% of random 10- and 11-digit ids share that shape.
 - **GDPR Article 9** (special categories) is intentionally out of scope — never an
   inference model. See [`../SPEC.md`](../SPEC.md).
 

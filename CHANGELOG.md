@@ -2,6 +2,31 @@
 
 ## Unreleased
 
+### Fixed
+- EMAIL no longer backtracks quadratically. With no left boundary, every start
+  inside a long run with no `@` rescanned the run: about 5 s on 100k letters in
+  Python. The pattern now refuses to start inside a local-part run, which leaves
+  the match set unchanged. A timing test runs 16 adversarial 100k inputs against
+  every spec pattern and both full detectors.
+- Go: the national-ID scan no longer retries byte by byte inside a long digit
+  run after a refused boundary (100k digits: about 430 ms, super-linear, now
+  about 30 ms).
+- IBAN finds 4-character groups separated by a space, NBSP, thin space, dot or
+  dash, in any case. Mod-97 and the per-country length still apply; one
+  separator kind per IBAN, no mixed case, and a grouped or lowercase IBAN needs
+  a known country. A grouped match running past the country length is cut back
+  to it, and scanning resumes at the cut.
+- CREDIT_CARD finds a card inside a longer digit run (a card followed by its
+  expiry or CVV, or after a short digit prefix): it validates the longest
+  13-19-digit window starting at each digit group, and a window shorter than the
+  run must be card-shaped (4-digit groups, or Amex 4-6-5/4-6-4), so long numeric
+  ids stay clean.
+
+### Added
+- PHONE detects compact E.164 (`+` and 9-15 digits, optionally one separator
+  after the country code). Compact national numbers (`0` plus 9-10 digits) stay
+  undetected: about 9% of random 10- and 11-digit ids share that shape.
+
 ### Changed
 - Test data is synthetic only. Phones come from regulator fiction ranges
   (ARCEP, Bundesnetzagentur, Ofcom, NANPA), emails from RFC 2606/6761 domains,
